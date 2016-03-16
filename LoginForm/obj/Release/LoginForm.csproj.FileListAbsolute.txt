@@ -1,0 +1,11 @@
+C:\Users\I5-Intel\documents\visual studio 2015\Projects\ClinicManagement\LoginForm\bin\Release\LoginForm.exe.config
+C:\Users\I5-Intel\documents\visual studio 2015\Projects\ClinicManagement\LoginForm\bin\Release\LoginForm.exe
+C:\Users\I5-Intel\documents\visual studio 2015\Projects\ClinicManagement\LoginForm\bin\Release\LoginForm.pdb
+C:\Users\I5-Intel\documents\visual studio 2015\Projects\ClinicManagement\LoginForm\bin\Release\DataController.dll
+C:\Users\I5-Intel\documents\visual studio 2015\Projects\ClinicManagement\LoginForm\bin\Release\DataController.pdb
+C:\Users\I5-Intel\documents\visual studio 2015\Projects\ClinicManagement\LoginForm\obj\Release\LoginForm.csprojResolveAssemblyReference.cache
+C:\Users\I5-Intel\documents\visual studio 2015\Projects\ClinicManagement\LoginForm\obj\Release\LoginForm.LoginForm.resources
+C:\Users\I5-Intel\documents\visual studio 2015\Projects\ClinicManagement\LoginForm\obj\Release\LoginForm.Properties.Resources.resources
+C:\Users\I5-Intel\documents\visual studio 2015\Projects\ClinicManagement\LoginForm\obj\Release\LoginForm.csproj.GenerateResource.Cache
+C:\Users\I5-Intel\documents\visual studio 2015\Projects\ClinicManagement\LoginForm\obj\Release\LoginForm.exe
+C:\Users\I5-Intel\documents\visual studio 2015\Projects\ClinicManagement\LoginForm\obj\Release\LoginForm.pdb

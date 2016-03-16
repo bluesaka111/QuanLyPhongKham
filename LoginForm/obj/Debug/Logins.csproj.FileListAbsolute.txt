@@ -1,0 +1,11 @@
+C:\Users\blues\Documents\Visual Studio 2015\Projects\ClinicManagement\ClinicManagement\bin\Debug\ClinicManagement.exe.config
+C:\Users\blues\Documents\Visual Studio 2015\Projects\ClinicManagement\ClinicManagement\bin\Debug\ClinicManagement.exe
+C:\Users\blues\Documents\Visual Studio 2015\Projects\ClinicManagement\ClinicManagement\bin\Debug\ClinicManagement.pdb
+C:\Users\blues\Documents\Visual Studio 2015\Projects\ClinicManagement\ClinicManagement\bin\Debug\DataController.dll
+C:\Users\blues\Documents\Visual Studio 2015\Projects\ClinicManagement\ClinicManagement\bin\Debug\DataController.pdb
+C:\Users\blues\Documents\Visual Studio 2015\Projects\ClinicManagement\ClinicManagement\obj\Debug\Logins.csprojResolveAssemblyReference.cache
+C:\Users\blues\Documents\Visual Studio 2015\Projects\ClinicManagement\ClinicManagement\obj\Debug\ClinicManagement.LoginForm.resources
+C:\Users\blues\Documents\Visual Studio 2015\Projects\ClinicManagement\ClinicManagement\obj\Debug\ClinicManagement.Properties.Resources.resources
+C:\Users\blues\Documents\Visual Studio 2015\Projects\ClinicManagement\ClinicManagement\obj\Debug\Logins.csproj.GenerateResource.Cache
+C:\Users\blues\Documents\Visual Studio 2015\Projects\ClinicManagement\ClinicManagement\obj\Debug\ClinicManagement.exe
+C:\Users\blues\Documents\Visual Studio 2015\Projects\ClinicManagement\ClinicManagement\obj\Debug\ClinicManagement.pdb

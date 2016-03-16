@@ -1,0 +1,9 @@
+C:\Users\blues\Documents\Visual Studio 2015\Projects\ClinicManagement\DataController\bin\Debug\DataController.dll
+C:\Users\blues\Documents\Visual Studio 2015\Projects\ClinicManagement\DataController\bin\Debug\DataController.pdb
+C:\Users\blues\Documents\Visual Studio 2015\Projects\ClinicManagement\DataController\obj\Debug\DataController.dll
+C:\Users\blues\Documents\Visual Studio 2015\Projects\ClinicManagement\DataController\obj\Debug\DataController.pdb
+C:\Users\blues\Documents\Visual Studio 2015\Projects\ClinicManagement\DataController\obj\Debug\DataController.csprojResolveAssemblyReference.cache
+C:\Users\I5-Intel\documents\visual studio 2015\Projects\ClinicManagement\DataController\bin\Debug\DataController.dll
+C:\Users\I5-Intel\documents\visual studio 2015\Projects\ClinicManagement\DataController\bin\Debug\DataController.pdb
+C:\Users\I5-Intel\documents\visual studio 2015\Projects\ClinicManagement\DataController\obj\Debug\DataController.dll
+C:\Users\I5-Intel\documents\visual studio 2015\Projects\ClinicManagement\DataController\obj\Debug\DataController.pdb
