@@ -1,0 +1,12 @@
+C:\Users\I5-Intel\documents\visual studio 2015\Projects\ClinicManagement\ClassLibrary1\bin\Debug\ASettings.dll
+C:\Users\I5-Intel\documents\visual studio 2015\Projects\ClinicManagement\ClassLibrary1\bin\Debug\ASettings.pdb
+C:\Users\I5-Intel\documents\visual studio 2015\Projects\ClinicManagement\ClassLibrary1\bin\Debug\Microsoft.CSharp.dll
+C:\Users\I5-Intel\documents\visual studio 2015\Projects\ClinicManagement\ClassLibrary1\bin\Debug\System.Data.DataSetExtensions.dll
+C:\Users\I5-Intel\documents\visual studio 2015\Projects\ClinicManagement\ClassLibrary1\bin\Debug\System.Data.dll
+C:\Users\I5-Intel\documents\visual studio 2015\Projects\ClinicManagement\ClassLibrary1\bin\Debug\System.dll
+C:\Users\I5-Intel\documents\visual studio 2015\Projects\ClinicManagement\ClassLibrary1\bin\Debug\System.Net.Http.dll
+C:\Users\I5-Intel\documents\visual studio 2015\Projects\ClinicManagement\ClassLibrary1\bin\Debug\System.Xml.dll
+C:\Users\I5-Intel\documents\visual studio 2015\Projects\ClinicManagement\ClassLibrary1\bin\Debug\System.Xml.Linq.dll
+C:\Users\I5-Intel\documents\visual studio 2015\Projects\ClinicManagement\ClassLibrary1\obj\Debug\ApplicationSetting.csprojResolveAssemblyReference.cache
+C:\Users\I5-Intel\documents\visual studio 2015\Projects\ClinicManagement\ClassLibrary1\obj\Debug\ASettings.dll
+C:\Users\I5-Intel\documents\visual studio 2015\Projects\ClinicManagement\ClassLibrary1\obj\Debug\ASettings.pdb

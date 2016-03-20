@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataController", "DataController\DataController.csproj", "{416016AA-41EA-426D-A2BF-CEE62AA6D475}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MainForms", "MainForms\MainForms.csproj", "{33B22512-E4F3-4098-9E7E-44D97FEF9D7E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1D3D9445-5491-47D2-ABBF-8BC234E4A3D5}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\..\..\..\Program Files (x86)\DotNetBar for Windows Forms\DevComponents.DotNetBar2.dll = ..\..\..\..\..\..\Program Files (x86)\DotNetBar for Windows Forms\DevComponents.DotNetBar2.dll
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationSetting", "ClassLibrary1\ApplicationSetting.csproj", "{42F2542E-ABEF-4876-AEFD-327F008B0573}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{416016AA-41EA-426D-A2BF-CEE62AA6D475}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{416016AA-41EA-426D-A2BF-CEE62AA6D475}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{416016AA-41EA-426D-A2BF-CEE62AA6D475}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{416016AA-41EA-426D-A2BF-CEE62AA6D475}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33B22512-E4F3-4098-9E7E-44D97FEF9D7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33B22512-E4F3-4098-9E7E-44D97FEF9D7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33B22512-E4F3-4098-9E7E-44D97FEF9D7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33B22512-E4F3-4098-9E7E-44D97FEF9D7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42F2542E-ABEF-4876-AEFD-327F008B0573}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42F2542E-ABEF-4876-AEFD-327F008B0573}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42F2542E-ABEF-4876-AEFD-327F008B0573}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42F2542E-ABEF-4876-AEFD-327F008B0573}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,16 @@
+C:\Users\I5-Intel\Documents\Visual Studio 2015\Projects\ClinicManagement\MainForms\bin\Release\MainForms.exe.manifest
+C:\Users\I5-Intel\Documents\Visual Studio 2015\Projects\ClinicManagement\MainForms\bin\Release\MainForms.application
+C:\Users\I5-Intel\Documents\Visual Studio 2015\Projects\ClinicManagement\MainForms\bin\Release\MainForms.exe
+C:\Users\I5-Intel\Documents\Visual Studio 2015\Projects\ClinicManagement\MainForms\bin\Release\MainForms.pdb
+C:\Users\I5-Intel\Documents\Visual Studio 2015\Projects\ClinicManagement\MainForms\bin\Release\DataController.dll
+C:\Users\I5-Intel\Documents\Visual Studio 2015\Projects\ClinicManagement\MainForms\bin\Release\DevComponents.DotNetBar2.dll
+C:\Users\I5-Intel\Documents\Visual Studio 2015\Projects\ClinicManagement\MainForms\bin\Release\DataController.pdb
+C:\Users\I5-Intel\Documents\Visual Studio 2015\Projects\ClinicManagement\MainForms\obj\Release\MainForms.csprojResolveAssemblyReference.cache
+C:\Users\I5-Intel\Documents\Visual Studio 2015\Projects\ClinicManagement\MainForms\obj\Release\MainForms.g.resources
+C:\Users\I5-Intel\Documents\Visual Studio 2015\Projects\ClinicManagement\MainForms\obj\Release\MainForms.Form1.resources
+C:\Users\I5-Intel\Documents\Visual Studio 2015\Projects\ClinicManagement\MainForms\obj\Release\MainForms.Properties.Resources.resources
+C:\Users\I5-Intel\Documents\Visual Studio 2015\Projects\ClinicManagement\MainForms\obj\Release\MainForms.csproj.GenerateResource.Cache
+C:\Users\I5-Intel\Documents\Visual Studio 2015\Projects\ClinicManagement\MainForms\obj\Release\MainForms.exe.manifest
+C:\Users\I5-Intel\Documents\Visual Studio 2015\Projects\ClinicManagement\MainForms\obj\Release\MainForms.application
+C:\Users\I5-Intel\Documents\Visual Studio 2015\Projects\ClinicManagement\MainForms\obj\Release\MainForms.exe
+C:\Users\I5-Intel\Documents\Visual Studio 2015\Projects\ClinicManagement\MainForms\obj\Release\MainForms.pdb

@@ -1,0 +1,4 @@
+C:\Users\I5-Intel\Documents\Visual Studio 2015\Projects\ClinicManagement\DataController\bin\Release\DataController.dll
+C:\Users\I5-Intel\Documents\Visual Studio 2015\Projects\ClinicManagement\DataController\bin\Release\DataController.pdb
+C:\Users\I5-Intel\Documents\Visual Studio 2015\Projects\ClinicManagement\DataController\obj\Release\DataController.dll
+C:\Users\I5-Intel\Documents\Visual Studio 2015\Projects\ClinicManagement\DataController\obj\Release\DataController.pdb
