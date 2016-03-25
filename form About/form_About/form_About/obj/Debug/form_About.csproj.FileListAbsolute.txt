@@ -1,0 +1,8 @@
+D:\QuanlyPhongKham\form About\form_About\form_About\bin\Debug\form_About.exe
+D:\QuanlyPhongKham\form About\form_About\form_About\bin\Debug\form_About.pdb
+D:\QuanlyPhongKham\form About\form_About\form_About\obj\Debug\form_About.csprojResolveAssemblyReference.cache
+D:\QuanlyPhongKham\form About\form_About\form_About\obj\Debug\form_About.form_about.resources
+D:\QuanlyPhongKham\form About\form_About\form_About\obj\Debug\form_About.Properties.Resources.resources
+D:\QuanlyPhongKham\form About\form_About\form_About\obj\Debug\form_About.csproj.GenerateResource.Cache
+D:\QuanlyPhongKham\form About\form_About\form_About\obj\Debug\form_About.exe
+D:\QuanlyPhongKham\form About\form_About\form_About\obj\Debug\form_About.pdb
