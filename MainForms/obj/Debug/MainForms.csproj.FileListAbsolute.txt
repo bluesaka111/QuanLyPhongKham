@@ -32,3 +32,5 @@ C:\Users\I5-Intel\documents\visual studio 2015\Projects\ClinicManagement\MainFor
 C:\Users\I5-Intel\documents\visual studio 2015\Projects\ClinicManagement\MainForms\bin\Debug\System.Windows.Forms.dll
 C:\Users\I5-Intel\documents\visual studio 2015\Projects\ClinicManagement\MainForms\bin\Debug\System.Xml.dll
 C:\Users\I5-Intel\documents\visual studio 2015\Projects\ClinicManagement\MainForms\bin\Debug\System.Xml.Linq.dll
+D:\QuanlyPhongKham\MainForms\obj\Debug\MainForms.exe
+D:\QuanlyPhongKham\MainForms\obj\Debug\MainForms.pdb
