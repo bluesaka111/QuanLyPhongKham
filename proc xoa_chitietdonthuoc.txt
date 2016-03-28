@@ -1,0 +1,11 @@
+CREATE PROCEDURE Xoa_donthuoc (@employeeID nchar(10), @madt nchar(10), @maba nchar(10), @ngaytaikham datetime, @ghichu text)
+AS
+	IF EXISTS (SELECT * FROM QuanLyPhongKham.dbo.NhanVien WHERE QuanLyPhongKham.dbo.NhanVien.MaNV = @employeeID AND (QuanLyPhongKham.dbo.NhanVien.ChucVu = N'Qu?n tr? viên' OR QuanLyPhongKham.dbo.NhanVien.ChucVu = N'Giám d?c'))
+		BEGIN
+			IF EXISTS (SELECT * FROM QuanLyPhongKham.dbo.NhanVien WHERE QuanLyPhongKham.dbo.NhanVien.MaNV = @maNV)
+			BEGIN
+			delete from ChiTietDonThuoc
+			where MaBA = @maba and MaDT = @madt
+			end
+		end
+go

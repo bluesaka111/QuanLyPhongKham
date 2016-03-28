@@ -1,0 +1,15 @@
+CREATE PROCEDURE sua_donthuoc (@employeeID nchar(10), @madt nchar(10), @maba nchar(10), @ngaytaikham datetime, @ghichu text)
+AS
+	IF EXISTS (SELECT * FROM QuanLyPhongKham.dbo.NhanVien WHERE QuanLyPhongKham.dbo.NhanVien.MaNV = @employeeID AND (QuanLyPhongKham.dbo.NhanVien.ChucVu = N'Qu?n tr? viên' OR QuanLyPhongKham.dbo.NhanVien.ChucVu = N'Giám d?c'))
+		BEGIN
+			IF EXISTS (SELECT * FROM QuanLyPhongKham.dbo.NhanVien WHERE QuanLyPhongKham.dbo.NhanVien.MaNV = @maNV)
+			BEGIN
+			update QuanLyPhongKham.dbo.ChiTietDonThuoc
+			set
+			MaBA = @maba,
+			NgayTaiKham = @ngaytaikham,
+			GhiChu = @ghichu
+			where ChiTietDonThuoc.MaDT = @madt
+			end
+		end
+GO
