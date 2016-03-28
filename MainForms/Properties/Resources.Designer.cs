@@ -65,7 +65,7 @@ namespace MainForms.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap _1458148412_common_email_envelope_mail_glyph {
             get {
-                object obj = ResourceManager.GetObject("1458148412_common-email-envelope-mail-glyph", resourceCulture);
+                object obj = ResourceManager.GetObject("1458148412_common_email_envelope_mail_glyph", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -75,7 +75,7 @@ namespace MainForms.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap _1458148526_Streamline_58 {
             get {
-                object obj = ResourceManager.GetObject("1458148526_Streamline-58", resourceCulture);
+                object obj = ResourceManager.GetObject("1458148526_Streamline_58", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -85,7 +85,7 @@ namespace MainForms.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap _1458323745_settings_24 {
             get {
-                object obj = ResourceManager.GetObject("1458323745_settings-24", resourceCulture);
+                object obj = ResourceManager.GetObject("1458323745_settings_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -95,7 +95,47 @@ namespace MainForms.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap _1458324747_Streamline_75 {
             get {
-                object obj = ResourceManager.GetObject("1458324747_Streamline-75", resourceCulture);
+                object obj = ResourceManager.GetObject("1458324747_Streamline_75", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _1458753181_task_manager {
+            get {
+                object obj = ResourceManager.GetObject("1458753181_task-manager", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _1458754244_task_manager_help {
+            get {
+                object obj = ResourceManager.GetObject("1458754244_task-manager_help", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _1458756094_application_pgp_signature {
+            get {
+                object obj = ResourceManager.GetObject("1458756094_application-pgp-signature", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_login_2 {
+            get {
+                object obj = ResourceManager.GetObject("icon_login_2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

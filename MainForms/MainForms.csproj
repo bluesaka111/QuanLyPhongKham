@@ -9,9 +9,11 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MainForms</RootNamespace>
     <AssemblyName>MainForms</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <PublishUrl>c:\publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -37,6 +39,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -46,6 +49,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>13D53E9BFB1B6EA98760BFCAFE4672EFF22247F1</ManifestCertificateThumbprint>
@@ -117,7 +121,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="MainForms_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -134,9 +137,25 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ClassLibrary1\ApplicationSetting.csproj">
+      <Project>{42f2542e-abef-4876-aefd-327f008b0573}</Project>
+      <Name>ApplicationSetting</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataController\DataController.csproj">
       <Project>{416016aa-41ea-426d-a2bf-cee62aa6d475}</Project>
       <Name>DataController</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DTObject\DTObject.csproj">
+      <Project>{0900a83b-8df4-4709-9302-ef898545516f}</Project>
+      <Name>DTObject</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PatientInfo\PatientInfo.csproj">
+      <Project>{ca3e6b51-e4c4-4d3e-8208-dc8a82512dcd}</Project>
+      <Name>PatientInfo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WindowsFormsApplication1\ActionForm.csproj">
+      <Project>{1c1741b6-839e-4fce-a327-5ce4cf529f50}</Project>
+      <Name>ActionForm</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -165,6 +184,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\1458324747_Streamline-75.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_login_2.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1458753181_task-manager.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1458754244_task-manager_help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1458756094_application-pgp-signature.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

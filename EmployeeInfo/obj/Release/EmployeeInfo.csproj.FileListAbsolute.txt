@@ -1,0 +1,8 @@
+F:\22032016\Visual Studio 2015\Projects\ClinicManagement\EmployeeInfo\bin\Release\EmployeeInfo.exe.config
+F:\22032016\Visual Studio 2015\Projects\ClinicManagement\EmployeeInfo\bin\Release\EmployeeInfo.exe
+F:\22032016\Visual Studio 2015\Projects\ClinicManagement\EmployeeInfo\bin\Release\EmployeeInfo.pdb
+F:\22032016\Visual Studio 2015\Projects\ClinicManagement\EmployeeInfo\obj\Release\EmployeeInfo.EForm.resources
+F:\22032016\Visual Studio 2015\Projects\ClinicManagement\EmployeeInfo\obj\Release\EmployeeInfo.Properties.Resources.resources
+F:\22032016\Visual Studio 2015\Projects\ClinicManagement\EmployeeInfo\obj\Release\EmployeeInfo.csproj.GenerateResource.Cache
+F:\22032016\Visual Studio 2015\Projects\ClinicManagement\EmployeeInfo\obj\Release\EmployeeInfo.exe
+F:\22032016\Visual Studio 2015\Projects\ClinicManagement\EmployeeInfo\obj\Release\EmployeeInfo.pdb

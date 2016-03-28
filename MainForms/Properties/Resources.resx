@@ -118,19 +118,31 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="1458148526_Streamline-58" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="1458148526_Streamline_58" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\1458148526_Streamline-58.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
     <comment>White Email</comment>
   </data>
-  <data name="1458323745_settings-24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="1458754244_task-manager_help" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1458754244_task-manager_help.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="1458324747_Streamline_75" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1458324747_Streamline-75.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_login_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_login_2.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="1458323745_settings_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\1458323745_settings-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
     <comment>Black clock</comment>
   </data>
-  <data name="1458148412_common-email-envelope-mail-glyph" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="1458753181_task-manager" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1458753181_task-manager.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="1458148412_common_email_envelope_mail_glyph" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\1458148412_common-email-envelope-mail-glyph.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
     <comment>Black Mail</comment>
   </data>
-  <data name="1458324747_Streamline-75" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\1458324747_Streamline-75.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="1458756094_application-pgp-signature" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1458756094_application-pgp-signature.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

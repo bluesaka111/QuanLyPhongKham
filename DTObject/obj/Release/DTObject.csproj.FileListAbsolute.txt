@@ -1,0 +1,4 @@
+F:\22032016\Visual Studio 2015\Projects\ClinicManagement\DTObject\bin\Release\DTObject.dll
+F:\22032016\Visual Studio 2015\Projects\ClinicManagement\DTObject\bin\Release\DTObject.pdb
+F:\22032016\Visual Studio 2015\Projects\ClinicManagement\DTObject\obj\Release\DTObject.dll
+F:\22032016\Visual Studio 2015\Projects\ClinicManagement\DTObject\obj\Release\DTObject.pdb

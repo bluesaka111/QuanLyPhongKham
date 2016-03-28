@@ -9,6 +9,7 @@ using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using System.Windows.Forms;
 using System.ComponentModel;
+using DTObject;
 
 namespace DataController
 {
@@ -35,7 +36,7 @@ namespace DataController
             }
             return maxRes;
         }
-        public static Errors LoadPatientTableStruct(StoredData userdata, DataTable dt, int start, int amount, Errors err)
+        public static Errors LoadPatientTableStruct(UserInfo userdata, DataTable dt, int start, int amount, Errors err)
         {
             dt.Reset();
             if (Connection.sqlcon.State != ConnectionState.Closed)
@@ -77,7 +78,7 @@ namespace DataController
         }
 
 
-        public static Errors LoadEmployeeTableStruct(StoredData userdata, DataTable dt, int start, int amount, Errors err)
+        public static Errors LoadEmployeeTableStruct(UserInfo userdata, DataTable dt, int start, int amount, Errors err)
         {
             dt.Reset();
             if (Connection.sqlcon.State != ConnectionState.Closed)

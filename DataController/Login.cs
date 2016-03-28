@@ -9,6 +9,8 @@ using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using System.ComponentModel;
 using System.Security.Cryptography;
+using System.Windows.Forms;
+using DTObject;
 
 namespace DataController
 {
@@ -47,7 +49,7 @@ namespace DataController
             return sqlstring.ConnectionString;
         }
 
-        public static void userLogin(StoredData userdata, DataTable dt, Errors err)
+        public static void userLogin(UserInfo userdata, DataTable dt, Errors err)
         {
             MD5 cryptoMD5 = new MD5CryptoServiceProvider();
             cryptoMD5 = MD5CryptoServiceProvider.Create();
@@ -62,12 +64,14 @@ namespace DataController
                 Connection.sqlcon.Open();
                 SqlCommand sqlcom = new SqlCommand();
                 sqlcom.Connection = Connection.sqlcon;
-                sqlcom.CommandText = "usp_UserLogin";
+                sqlcom.CommandText = "QuanLyPhongKham.dbo.usp_UserLogin";
                 sqlcom.CommandType = CommandType.StoredProcedure;
                 if (!sqlcom.Parameters.Contains("@username")) { sqlcom.Parameters.Add("@username", SqlDbType.NVarChar); }
                 if (!sqlcom.Parameters.Contains("@passhash")) { sqlcom.Parameters.Add("@passhash", SqlDbType.NVarChar); }
                 sqlcom.Parameters["@username"].Value = userdata.userid;
+                sqlcom.Parameters["@username"].Size = 50;
                 sqlcom.Parameters["@passhash"].Value = passhash;
+                sqlcom.Parameters["@passhash"].Size = 255;
                 SqlDataAdapter sqlda = new SqlDataAdapter();
                 sqlda.SelectCommand = sqlcom;
                 sqlda.Fill(dt);

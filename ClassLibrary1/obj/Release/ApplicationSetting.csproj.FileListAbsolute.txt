@@ -1,0 +1,11 @@
+F:\22032016\Visual Studio 2015\Projects\ClinicManagement\ClassLibrary1\bin\Release\ASettings.dll
+F:\22032016\Visual Studio 2015\Projects\ClinicManagement\ClassLibrary1\bin\Release\ASettings.pdb
+F:\22032016\Visual Studio 2015\Projects\ClinicManagement\ClassLibrary1\bin\Release\Microsoft.CSharp.dll
+F:\22032016\Visual Studio 2015\Projects\ClinicManagement\ClassLibrary1\bin\Release\System.Data.DataSetExtensions.dll
+F:\22032016\Visual Studio 2015\Projects\ClinicManagement\ClassLibrary1\bin\Release\System.Data.dll
+F:\22032016\Visual Studio 2015\Projects\ClinicManagement\ClassLibrary1\bin\Release\System.dll
+F:\22032016\Visual Studio 2015\Projects\ClinicManagement\ClassLibrary1\bin\Release\System.Xml.dll
+F:\22032016\Visual Studio 2015\Projects\ClinicManagement\ClassLibrary1\bin\Release\System.Xml.Linq.dll
+F:\22032016\Visual Studio 2015\Projects\ClinicManagement\ClassLibrary1\obj\Release\ApplicationSetting.csprojResolveAssemblyReference.cache
+F:\22032016\Visual Studio 2015\Projects\ClinicManagement\ClassLibrary1\obj\Release\ASettings.dll
+F:\22032016\Visual Studio 2015\Projects\ClinicManagement\ClassLibrary1\obj\Release\ASettings.pdb

@@ -1,0 +1,17 @@
+F:\22032016\Visual Studio 2015\Projects\ClinicManagement\WindowsFormsApplication1\bin\Release\ActionForm.exe.config
+F:\22032016\Visual Studio 2015\Projects\ClinicManagement\WindowsFormsApplication1\bin\Release\ActionForm.exe
+F:\22032016\Visual Studio 2015\Projects\ClinicManagement\WindowsFormsApplication1\bin\Release\ActionForm.pdb
+F:\22032016\Visual Studio 2015\Projects\ClinicManagement\WindowsFormsApplication1\bin\Release\ASettings.dll
+F:\22032016\Visual Studio 2015\Projects\ClinicManagement\WindowsFormsApplication1\bin\Release\DTObject.dll
+F:\22032016\Visual Studio 2015\Projects\ClinicManagement\WindowsFormsApplication1\bin\Release\EmployeeInfo.exe
+F:\22032016\Visual Studio 2015\Projects\ClinicManagement\WindowsFormsApplication1\bin\Release\PatientInfo.exe
+F:\22032016\Visual Studio 2015\Projects\ClinicManagement\WindowsFormsApplication1\bin\Release\ASettings.pdb
+F:\22032016\Visual Studio 2015\Projects\ClinicManagement\WindowsFormsApplication1\bin\Release\DTObject.pdb
+F:\22032016\Visual Studio 2015\Projects\ClinicManagement\WindowsFormsApplication1\bin\Release\EmployeeInfo.pdb
+F:\22032016\Visual Studio 2015\Projects\ClinicManagement\WindowsFormsApplication1\bin\Release\PatientInfo.pdb
+F:\22032016\Visual Studio 2015\Projects\ClinicManagement\WindowsFormsApplication1\obj\Release\ActionForm.csprojResolveAssemblyReference.cache
+F:\22032016\Visual Studio 2015\Projects\ClinicManagement\WindowsFormsApplication1\obj\Release\ActionForm.Form1.resources
+F:\22032016\Visual Studio 2015\Projects\ClinicManagement\WindowsFormsApplication1\obj\Release\ActionForm.Properties.Resources.resources
+F:\22032016\Visual Studio 2015\Projects\ClinicManagement\WindowsFormsApplication1\obj\Release\ActionForm.csproj.GenerateResource.Cache
+F:\22032016\Visual Studio 2015\Projects\ClinicManagement\WindowsFormsApplication1\obj\Release\ActionForm.exe
+F:\22032016\Visual Studio 2015\Projects\ClinicManagement\WindowsFormsApplication1\obj\Release\ActionForm.pdb

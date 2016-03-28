@@ -1,0 +1,11 @@
+E:\22032016\Visual Studio 2015\Projects\ClinicManagement\DTObject\bin\Debug\DTObject.dll
+E:\22032016\Visual Studio 2015\Projects\ClinicManagement\DTObject\bin\Debug\DTObject.pdb
+E:\22032016\Visual Studio 2015\Projects\ClinicManagement\DTObject\obj\Debug\DTObject.dll
+E:\22032016\Visual Studio 2015\Projects\ClinicManagement\DTObject\obj\Debug\DTObject.pdb
+F:\22032016\Visual Studio 2015\Projects\ClinicManagement\DTObject\bin\Debug\DTObject.dll
+F:\22032016\Visual Studio 2015\Projects\ClinicManagement\DTObject\bin\Debug\DTObject.pdb
+F:\22032016\Visual Studio 2015\Projects\ClinicManagement\DTObject\obj\Debug\DTObject.dll
+F:\22032016\Visual Studio 2015\Projects\ClinicManagement\DTObject\obj\Debug\DTObject.pdb
+E:\22032016\Visual Studio 2015\Projects\ClinicManagement\DTObject\bin\Debug\ASettings.dll
+E:\22032016\Visual Studio 2015\Projects\ClinicManagement\DTObject\bin\Debug\ASettings.pdb
+E:\22032016\Visual Studio 2015\Projects\ClinicManagement\DTObject\obj\Debug\DTObject.csprojResolveAssemblyReference.cache
