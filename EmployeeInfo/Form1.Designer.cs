@@ -32,7 +32,6 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel12 = new System.Windows.Forms.Panel();
             this.button_close = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -65,7 +64,7 @@
             this.txt_DThoai = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.panel23 = new System.Windows.Forms.Panel();
-            this.txt_wDay = new System.Windows.Forms.TextBox();
+            this.dtp_wDay = new System.Windows.Forms.DateTimePicker();
             this.label13 = new System.Windows.Forms.Label();
             this.panel22 = new System.Windows.Forms.Panel();
             this.txt_CVNV = new System.Windows.Forms.TextBox();
@@ -102,15 +101,15 @@
             this.txt_BonusNV = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.panel17 = new System.Windows.Forms.Panel();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.txt_LuongNV = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.panel18 = new System.Windows.Forms.Panel();
             this.panel24 = new System.Windows.Forms.Panel();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label9 = new System.Windows.Forms.Label();
             this.panel20 = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel12.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -140,13 +139,13 @@
             this.panel16.SuspendLayout();
             this.panel17.SuspendLayout();
             this.panel24.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel20.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // timer1
             // 
-            this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // panel2
@@ -178,17 +177,6 @@
             this.label1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.label1_MouseDown);
             this.label1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.label1_MouseMove);
             this.label1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.label1_MouseUp);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pictureBox1.Image = global::EmployeeInfo.Properties.Resources._1458751860_personal;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(36, 21);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox1.TabIndex = 4;
-            this.pictureBox1.TabStop = false;
             // 
             // panel12
             // 
@@ -263,14 +251,12 @@
             this.expandablePanel6.Controls.Add(this.listView3);
             this.expandablePanel6.Controls.Add(this.panel26);
             this.expandablePanel6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.expandablePanel6.Expanded = false;
-            this.expandablePanel6.ExpandedBounds = new System.Drawing.Rectangle(5, 246, 685, 353);
             this.expandablePanel6.HideControlsWhenCollapsed = true;
             this.expandablePanel6.Location = new System.Drawing.Point(5, 246);
             this.expandablePanel6.MarkupUsesStyleAlignment = true;
             this.expandablePanel6.MaximumSize = new System.Drawing.Size(0, 353);
             this.expandablePanel6.Name = "expandablePanel6";
-            this.expandablePanel6.Size = new System.Drawing.Size(685, 26);
+            this.expandablePanel6.Size = new System.Drawing.Size(685, 353);
             this.expandablePanel6.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(77)))), ((int)(((byte)(77)))));
             this.expandablePanel6.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
             this.expandablePanel6.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder;
@@ -300,7 +286,7 @@
             this.listView3.FullRowSelect = true;
             this.listView3.Location = new System.Drawing.Point(0, 60);
             this.listView3.Name = "listView3";
-            this.listView3.Size = new System.Drawing.Size(685, 0);
+            this.listView3.Size = new System.Drawing.Size(685, 293);
             this.listView3.TabIndex = 5;
             this.listView3.UseCompatibleStateImageBehavior = false;
             this.listView3.View = System.Windows.Forms.View.Details;
@@ -331,6 +317,7 @@
             this.button4.TabIndex = 9;
             this.button4.Text = "Xóa";
             this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // panel33
             // 
@@ -461,6 +448,7 @@
             this.button3.TabIndex = 4;
             this.button3.Text = "Xóa";
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // panel31
             // 
@@ -481,6 +469,7 @@
             this.button2.TabIndex = 2;
             this.button2.Text = "Sửa";
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // panel27
             // 
@@ -501,6 +490,7 @@
             this.button1.TabIndex = 0;
             this.button1.Text = "Thêm";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // listView2
             // 
@@ -637,7 +627,7 @@
             // 
             this.panel23.BackColor = System.Drawing.Color.Transparent;
             this.panel23.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel23.Controls.Add(this.txt_wDay);
+            this.panel23.Controls.Add(this.dtp_wDay);
             this.panel23.Controls.Add(this.label13);
             this.panel23.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel23.ForeColor = System.Drawing.Color.White;
@@ -647,15 +637,14 @@
             this.panel23.Size = new System.Drawing.Size(668, 30);
             this.panel23.TabIndex = 8;
             // 
-            // txt_wDay
+            // dtp_wDay
             // 
-            this.txt_wDay.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txt_wDay.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txt_wDay.Location = new System.Drawing.Point(150, 5);
-            this.txt_wDay.Name = "txt_wDay";
-            this.txt_wDay.Size = new System.Drawing.Size(511, 20);
-            this.txt_wDay.TabIndex = 1;
-            this.txt_wDay.Tag = "NOT NULL";
+            this.dtp_wDay.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dtp_wDay.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtp_wDay.Location = new System.Drawing.Point(150, 5);
+            this.dtp_wDay.Name = "dtp_wDay";
+            this.dtp_wDay.Size = new System.Drawing.Size(511, 20);
+            this.dtp_wDay.TabIndex = 1;
             // 
             // label13
             // 
@@ -958,6 +947,7 @@
             this.bt_delete_NV.TabIndex = 0;
             this.bt_delete_NV.Text = "Xóa hồ sơ";
             this.bt_delete_NV.UseVisualStyleBackColor = false;
+            this.bt_delete_NV.Click += new System.EventHandler(this.bt_delete_NV_Click);
             // 
             // panel25
             // 
@@ -980,6 +970,7 @@
             this.bt_update_NV.TabIndex = 0;
             this.bt_update_NV.Text = "Cập nhật hồ sơ";
             this.bt_update_NV.UseVisualStyleBackColor = false;
+            this.bt_update_NV.Click += new System.EventHandler(this.bt_update_NV_Click);
             // 
             // panel30
             // 
@@ -1002,6 +993,7 @@
             this.bt_add_NV.TabIndex = 0;
             this.bt_add_NV.Text = "Thêm hồ sơ";
             this.bt_add_NV.UseVisualStyleBackColor = false;
+            this.bt_add_NV.Click += new System.EventHandler(this.bt_add_NV_Click);
             // 
             // panel21
             // 
@@ -1070,6 +1062,7 @@
             this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(105, 20);
             this.textBox2.TabIndex = 2;
+            this.textBox2.Tag = "IGNORE";
             // 
             // label11
             // 
@@ -1104,7 +1097,9 @@
             this.txt_BonusNV.Name = "txt_BonusNV";
             this.txt_BonusNV.Size = new System.Drawing.Size(105, 20);
             this.txt_BonusNV.TabIndex = 1;
-            this.txt_BonusNV.Tag = "NOT NULL";
+            this.txt_BonusNV.Tag = "IGNORE";
+            this.txt_BonusNV.Text = "0";
+            this.txt_BonusNV.TextChanged += new System.EventHandler(this.txt_BonusNV_TextChanged);
             // 
             // label10
             // 
@@ -1121,7 +1116,7 @@
             // 
             this.panel17.BackColor = System.Drawing.Color.Transparent;
             this.panel17.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel17.Controls.Add(this.textBox6);
+            this.panel17.Controls.Add(this.txt_LuongNV);
             this.panel17.Controls.Add(this.label8);
             this.panel17.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel17.ForeColor = System.Drawing.Color.White;
@@ -1131,15 +1126,16 @@
             this.panel17.Size = new System.Drawing.Size(210, 30);
             this.panel17.TabIndex = 7;
             // 
-            // textBox6
+            // txt_LuongNV
             // 
-            this.textBox6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox6.Location = new System.Drawing.Point(98, 5);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(105, 20);
-            this.textBox6.TabIndex = 1;
-            this.textBox6.Tag = "NOT NULL";
+            this.txt_LuongNV.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txt_LuongNV.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txt_LuongNV.Location = new System.Drawing.Point(98, 5);
+            this.txt_LuongNV.Name = "txt_LuongNV";
+            this.txt_LuongNV.Size = new System.Drawing.Size(105, 20);
+            this.txt_LuongNV.TabIndex = 1;
+            this.txt_LuongNV.Tag = "IGNORE";
+            this.txt_LuongNV.TextChanged += new System.EventHandler(this.txt_LuongNV_TextChanged);
             // 
             // label8
             // 
@@ -1171,16 +1167,6 @@
             this.panel24.Size = new System.Drawing.Size(210, 210);
             this.panel24.TabIndex = 11;
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox2.Location = new System.Drawing.Point(5, 5);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(198, 198);
-            this.pictureBox2.TabIndex = 0;
-            this.pictureBox2.TabStop = false;
-            // 
             // label9
             // 
             this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1203,6 +1189,27 @@
             this.panel20.Size = new System.Drawing.Size(920, 21);
             this.panel20.TabIndex = 10;
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox2.Location = new System.Drawing.Point(5, 5);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(198, 198);
+            this.pictureBox2.TabIndex = 0;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pictureBox1.Image = global::EmployeeInfo.Properties.Resources._1458751860_personal;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(36, 21);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox1.TabIndex = 4;
+            this.pictureBox1.TabStop = false;
+            // 
             // EForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1216,8 +1223,8 @@
             this.Name = "EForm";
             this.Padding = new System.Windows.Forms.Padding(1);
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.EForm_Load);
             this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel12.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
@@ -1232,7 +1239,6 @@
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
             this.panel23.ResumeLayout(false);
-            this.panel23.PerformLayout();
             this.panel22.ResumeLayout(false);
             this.panel22.PerformLayout();
             this.panel6.ResumeLayout(false);
@@ -1257,8 +1263,9 @@
             this.panel17.ResumeLayout(false);
             this.panel17.PerformLayout();
             this.panel24.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel20.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1282,7 +1289,6 @@
         private System.Windows.Forms.TextBox txt_DThoai;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panel23;
-        private System.Windows.Forms.TextBox txt_wDay;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Panel panel22;
         private System.Windows.Forms.TextBox txt_CVNV;
@@ -1311,7 +1317,7 @@
         private System.Windows.Forms.TextBox txt_BonusNV;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Panel panel17;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox txt_LuongNV;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Panel panel18;
         private System.Windows.Forms.Panel panel24;
@@ -1323,8 +1329,6 @@
         private System.Windows.Forms.Panel panel28;
         private System.Windows.Forms.Panel panel19;
         private System.Windows.Forms.Button bt_reset_fields;
-        private System.Windows.Forms.Panel panel29;
-        private System.Windows.Forms.Button bt_delete_NV;
         private System.Windows.Forms.Panel panel25;
         private System.Windows.Forms.Button bt_update_NV;
         private System.Windows.Forms.Panel panel30;
@@ -1340,11 +1344,14 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Panel panel31;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Panel panel33;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Panel panel34;
         private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.DateTimePicker dtp_wDay;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Panel panel33;
+        private System.Windows.Forms.Panel panel29;
+        private System.Windows.Forms.Button bt_delete_NV;
     }
 }
 

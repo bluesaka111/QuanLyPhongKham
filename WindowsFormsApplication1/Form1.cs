@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DataController;
+using System.Data.SqlClient;
 using DTObject;
 
 namespace ActionForm
@@ -14,12 +16,13 @@ namespace ActionForm
     public partial class Form1 : Form
     {
         private static bool runFromApp = false;
-        private ListViewItem litem;
+        private ListView.SelectedListViewItemCollection litem;
         private static DialogResult diaR;
         private int listv;
         public Form1()
         {
             InitializeComponent();
+            litem = null;
         }
 
         public static bool commandRun
@@ -27,14 +30,15 @@ namespace ActionForm
             set { runFromApp = value; }
         }
 
-        public static DialogResult ShowMenu(ListViewItem item, int listview, UserInfo employeedata, Point position)
+
+
+        public static DialogResult ShowMenu(ListView.SelectedListViewItemCollection item, int listview, UserInfo employeedata, Point position)
         {
             if (!runFromApp)
             {
                 return DialogResult.Cancel;
             }
             ActionForm.Form1 f = new Form1();
-            f.litem = new ListViewItem();
             f.litem = item;
             diaR = DialogResult.None;
             if (listview == 1)
@@ -58,7 +62,7 @@ namespace ActionForm
             return diaR;
         }
 
-        public static DialogResult ShowMenu(Point position)
+        public static DialogResult ShowMenu(Point position, int listview)
         {
             if (!runFromApp)
             {
@@ -68,9 +72,10 @@ namespace ActionForm
             diaR = DialogResult.None;
             f.Location = position;
             f.button3.Enabled = false;
-            f.button3.BackColor = Color.FromName("Grey"); ;
+            f.button3.BackColor = Color.FromName("Grey");
             f.button2.Enabled = false;
-            f.button2.BackColor = Color.FromName("Grey"); ;
+            f.button2.BackColor = Color.FromName("Grey");
+            f.listv = listview;
             f.ShowDialog();
             return diaR;
         }
@@ -101,32 +106,209 @@ namespace ActionForm
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if(litem == null)
+            {
+                return;
+            }
             if(listv == 2)
             {
-                PatientInfo.PForm patIfo = new PatientInfo.PForm(litem.SubItems[0].Text, true, 0);
-                patIfo.ShowDialog();
+                if (litem.Count >= 1)
+                {
+                    PatientInfo.PForm patIfo = new PatientInfo.PForm(litem[0].SubItems[0].Text, true, 0);
+                    patIfo.ShowDialog();
+                }
                 this.Close();
             }
-            else
+            if (listv == 1)
             {
-                EmployeeInfo.EForm empIfo = new EmployeeInfo.EForm(litem.SubItems[0].Text, true, 0);
-                empIfo.ShowDialog();
+                if (litem.Count >= 1)
+                {
+                    EmployeeInfo.EForm empIfo = new EmployeeInfo.EForm(litem[0].SubItems[0].Text, true, 0);
+                    empIfo.ShowDialog();
+                }
                 this.Close();
             }
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
+            if (litem == null)
+            {
+                return;
+            }
             if (listv == 2)
             {
-                PatientInfo.PForm patIfo = new PatientInfo.PForm(litem.SubItems[0].Text, false, 2);
-                patIfo.ShowDialog();
+                if (litem.Count >= 1)
+                {
+                    PatientInfo.PForm patIfo = new PatientInfo.PForm(litem[0].SubItems[0].Text, false, 2);
+                    patIfo.ShowDialog();
+                }
                 this.Close();
             }
-            else
+            if(listv == 1)
             {
-                EmployeeInfo.EForm empIfo = new EmployeeInfo.EForm(litem.SubItems[0].Text, false, 2);
-                empIfo.ShowDialog();
+                if (litem.Count >= 1)
+                {
+                    EmployeeInfo.EForm empIfo = new EmployeeInfo.EForm(litem[0].SubItems[0].Text, false, 2);
+                    empIfo.ShowDialog();
+                }
+                this.Close();
+            }
+        }
+
+        private string GetMaBA(string maBN)
+        {
+            try
+            {
+                if(Connection.sqlcon.State != ConnectionState.Open)
+                {
+                    Connection.sqlcon.Open();
+                }
+                SqlCommand c = new SqlCommand();
+                c.CommandText = "SELECT MaBA FROM QuanLyPhongKham.dbo.BenhAn WHERE MaBN = @MaBN";
+                c.CommandType = CommandType.Text;
+                c.Parameters.Add("@MaBN");
+                c.Parameters["@MaBN"].Value = maBN;
+                c.Connection = Connection.sqlcon;
+
+                return (string)c.ExecuteScalar();
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if(litem.Count == 0)
+            {
+                return;
+            }
+            if(litem.Count >= 1)
+            {
+                if(listv == 1)
+                {
+                    try
+                    {
+                        if (Connection.sqlcon.State != ConnectionState.Open)
+                        {
+                            Connection.sqlcon.Open();
+                        }
+                        SqlCommand sqlc = new SqlCommand();
+                        sqlc.Connection = Connection.sqlcon;
+                        int success = 0;
+                        foreach (ListViewItem item in litem)
+                        {
+                            sqlc.CommandText = "DELETE FROM QuanLyPhongKham.dbo.ThongTinDonThuoc WHERE QuanLyPhongKham.dbo.ThongTinDonThuoc.MaNV = '" + item.SubItems[0].Text + "'";
+                            sqlc.CommandType = CommandType.Text;
+                            sqlc.ExecuteNonQuery();
+                            sqlc.CommandText = "DELETE FROM QuanLyPhongKham.dbo.BenhAn WHERE QuanLyPhongKham.dbo.BenhAn.MaNV = '" + item.SubItems[0].Text + "'";
+                            sqlc.CommandType = CommandType.Text;
+                            sqlc.ExecuteNonQuery();
+                            sqlc.CommandText = "DELETE FROM NhanVien WHERE MaNV = '" + item.SubItems[0].Text + "'";
+                            sqlc.ExecuteNonQuery();
+                            success++;
+                        }
+                        MessageBox.Show("Xóa thành công " + success.ToString() + "/" + litem.Count.ToString() + " hồ sơ nhân viên", "Thành công");
+                    }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show("Lỗi", ex.Message);
+                    }
+                    this.Close();
+                }
+                if (listv == 2)
+                {
+                    try
+                    {
+                        if (Connection.sqlcon.State != ConnectionState.Open)
+                        {
+                            Connection.sqlcon.Open();
+                        }
+                        SqlCommand sqlc = new SqlCommand();
+                        sqlc.Connection = Connection.sqlcon;
+                        int success = 0;
+                        foreach (ListViewItem i in litem)
+                        {
+                            try
+                            {
+                                string maBA = GetMaBA(i.SubItems[0].Text);
+                                sqlc.CommandText = "DELETE FROM QuanLyPhongKham.dbo.ThongTinDonThuoc WHERE MaBA = @MaBA";
+                                sqlc.CommandType = CommandType.Text;
+                                sqlc.Connection = Connection.sqlcon;
+                                sqlc.Parameters.Clear();
+                                if (!sqlc.Parameters.Contains("@MaBA"))
+                                {
+                                    sqlc.Parameters.Add("@MaBA", SqlDbType.NChar);
+                                }
+                                sqlc.Parameters["@MaBA"].Value = maBA;
+                                sqlc.Parameters["@MaBA"].SqlDbType = SqlDbType.NChar;
+
+                                sqlc.ExecuteNonQuery();
+
+                                sqlc.CommandText = "DELETE FROM QuanLyPhongKham.dbo.BenhAn WHERE MaBN = @MaBN";
+                                sqlc.CommandType = CommandType.Text;
+                                sqlc.Connection = Connection.sqlcon;
+                                sqlc.Parameters.Clear();
+                                if (!sqlc.Parameters.Contains("@MaBN"))
+                                {
+                                    sqlc.Parameters.Add("@MaBN", SqlDbType.NChar);
+                                }
+                                sqlc.Parameters["@MaBN"].Value = i.SubItems[0].Text;
+                                sqlc.Parameters["@MaBN"].SqlDbType = SqlDbType.NChar;
+
+                                sqlc.ExecuteNonQuery();
+
+                                sqlc.CommandText = "DELETE FROM QuanLyPhongKham.dbo.BenhNhan WHERE MaBN = @MaBN";
+                                sqlc.CommandType = CommandType.Text;
+                                sqlc.Connection = Connection.sqlcon;
+                                sqlc.Parameters.Clear();
+                                if (!sqlc.Parameters.Contains("@MaBN"))
+                                {
+                                    sqlc.Parameters.Add("@MaBN", SqlDbType.NChar);
+                                }
+                                sqlc.Parameters["@MaBN"].Value = i.SubItems[0].Text;
+                                sqlc.Parameters["@MaBN"].SqlDbType = SqlDbType.NChar;
+
+                                sqlc.ExecuteNonQuery();
+                                success++;
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message, "Lỗi");
+                            }
+                        }
+                        MessageBox.Show("Xóa thành công " + success.ToString() + "/" + litem.Count.ToString() + " hồ sơ bệnh nhân", "Thành công");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Lỗi", ex.Message);
+                    }
+                    this.Close();
+                }
+
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (listv == 2)
+            {
+                if (litem == null)
+                {
+                    PatientInfo.PForm patIfo = new PatientInfo.PForm("NULL",false, 1);
+                    patIfo.ShowDialog();
+                }
+                this.Close();
+            }
+            if (listv == 1)
+            {
+                if (litem == null)
+                {
+                    EmployeeInfo.EForm empIfo = new EmployeeInfo.EForm("NULL", false, 1);
+                    empIfo.ShowDialog();
+                }
                 this.Close();
             }
         }

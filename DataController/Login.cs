@@ -54,14 +54,13 @@ namespace DataController
             MD5 cryptoMD5 = new MD5CryptoServiceProvider();
             cryptoMD5 = MD5CryptoServiceProvider.Create();
             string passhash = CryptoExtras.GetMD5Hash(cryptoMD5, userdata.passcode);
-            if(Connection.sqlcon.State != ConnectionState.Closed)
-            {
-                Connection.sqlcon.Close();
-            }
             Connection.sqlcon.ConnectionString = SetConnection();
             try
             {
-                Connection.sqlcon.Open();
+                if (Connection.sqlcon.State != ConnectionState.Open)
+                {
+                    Connection.sqlcon.Open();
+                }
                 SqlCommand sqlcom = new SqlCommand();
                 sqlcom.Connection = Connection.sqlcon;
                 sqlcom.CommandText = "QuanLyPhongKham.dbo.usp_UserLogin";

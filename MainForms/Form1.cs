@@ -250,7 +250,7 @@ namespace MainForms
                 }
                 ListViewItem item = new ListViewItem();
                 item.Text = dr[0].ToString();
-                item.Tag = patientDT.Columns[0].ColumnName;
+                item.Tag = employeeDT.Columns[0].ColumnName;
                 for (int i = 1; i < employeeDT.Columns.Count; i++)
                 {
                     ListViewItem.ListViewSubItem sub = new ListViewItem.ListViewSubItem();
@@ -343,7 +343,7 @@ namespace MainForms
             cb.SelectedIndex = (cb.Items.Count == 1 ? 0 : 1);
         }
 
-        private void LoadAll(bool patientonly)
+        private void LoadAll(string userID)
         {
             label9.Text = "Hệ thống đang đồng bộ dữ liệu với máy chủ... xin đợi.";
             Errors err = new Errors();
@@ -353,22 +353,29 @@ namespace MainForms
             listView2.GridLines = false;
             haltAllProcess = true;
             #region Patient
-            int temp = Function.maxRecords(Connection.sqlcon, "QuanLyPhongKham.dbo.BenhNhan", err);
-            if (err.errors == String.Empty)
+            if(userID == String.Empty)
             {
-                CalculatePage(comboBox2, temp, 250);
-                Function.LoadPatientTableStruct(userdata, patientDT, 0, 250, err);
-                if (err.errors != String.Empty) { MessageBox.Show("Fill table Patient error" + err.errors); }
-                progressBar1.Maximum = employeeDT.Rows.Count;
-                if (!backgroundWorker2.IsBusy) { backgroundWorker2.RunWorkerAsync(); } else { MessageBox.Show("Tiến trình này hiện đang bận. Vui lòng thử lại sau"); }
+                return;
             }
-            else
-            {
-                MessageBox.Show("Unable to read Patient Info" + err.errors);
+            if(userID.StartsWith("YT") || userID.StartsWith("BS") || userID.StartsWith("QT") || userID.StartsWith("TST"))
+            { 
+                int temp = Function.maxRecords(Connection.sqlcon, "QuanLyPhongKham.dbo.BenhNhan", err);
+                if (err.errors == String.Empty)
+                {
+                    CalculatePage(comboBox2, temp, 250);
+                    Function.LoadPatientTableStruct(userdata, patientDT, 0, 250, err);
+                    if (err.errors != String.Empty) { MessageBox.Show("Fill table Patient error" + err.errors); }
+                    progressBar1.Maximum = employeeDT.Rows.Count;
+                    if (!backgroundWorker2.IsBusy) { backgroundWorker2.RunWorkerAsync(); } else { MessageBox.Show("Tiến trình này hiện đang bận. Vui lòng thử lại sau"); }
+                }
+                else
+                {
+                    MessageBox.Show("Unable to read Patient Info" + err.errors);
+                }
             }
             #endregion
             #region Employee
-            if (!patientonly)
+            if (userID.StartsWith("QT") || userID.StartsWith("TST"))
             {
                 int temp2 = Function.maxRecords(Connection.sqlcon, "QuanLyPhongKham.dbo.NhanVien", err);
                 if (err.errors == String.Empty)
@@ -388,7 +395,7 @@ namespace MainForms
             #endregion
         }
 
-        private void LoadAll(bool patientonly, int start, int amount)
+        private void LoadAll(string userID, int start, int amount)
         {
             label9.Text = "Hệ thống đang đồng bộ dữ liệu với máy chủ... xin đợi.";
             Errors err = new Errors();
@@ -401,22 +408,29 @@ namespace MainForms
             listView2.GridLines = false;
             haltAllProcess = true;
             label9.Text = "Hệ thống đang đồng bộ dữ liệu với máy chủ... xin đợi.";
-            if (err.errors == String.Empty)
+            if (userID == String.Empty)
             {
-                CalculatePage(comboBox2, temp, 250);
-                Function.LoadPatientTableStruct(userdata, patientDT, start, amount, err);
-                if (err.errors != String.Empty) { MessageBox.Show("Fill table Patient error" + err.errors); }
-                progressBar1.Maximum = employeeDT.Rows.Count;
-                if (!backgroundWorker2.IsBusy) { backgroundWorker2.RunWorkerAsync(); } else { MessageBox.Show("Tiến trình này hiện đang bận. Vui lòng thử lại sau"); }
-            }
-            else
-            {
-                MessageBox.Show("Unable to read Patient Info" + err.errors);
                 return;
+            }
+            if (userID.StartsWith("YT") || userID.StartsWith("BS") || userID.StartsWith("QT") || userID.StartsWith("TST"))
+            {
+                if (err.errors == String.Empty)
+                {
+                    CalculatePage(comboBox2, temp, 250);
+                    Function.LoadPatientTableStruct(userdata, patientDT, start, amount, err);
+                    if (err.errors != String.Empty) { MessageBox.Show("Fill table Patient error" + err.errors); }
+                    progressBar1.Maximum = employeeDT.Rows.Count;
+                    if (!backgroundWorker2.IsBusy) { backgroundWorker2.RunWorkerAsync(); } else { MessageBox.Show("Tiến trình này hiện đang bận. Vui lòng thử lại sau"); }
+                }
+                else
+                {
+                    MessageBox.Show("Unable to read Patient Info" + err.errors);
+                    return;
+                }
             }
             #endregion
             #region Employee
-            if (!patientonly)
+            if (userID.StartsWith("QT") || userID.StartsWith("TST"))
             {
                 int temp2 = Function.maxRecords(Connection.sqlcon, "QuanLyPhongKham.dbo.NhanVien", err);
                 if (err.errors == String.Empty)
@@ -502,7 +516,7 @@ namespace MainForms
                 bW1Stopped = false;
                 if (comboBox1.Items.Count == 0)
                 {
-                    LoadAll(false);
+                    LoadAll(userdata.employeeID);
                 }
                 else
                 {
@@ -534,7 +548,7 @@ namespace MainForms
                 bW2Stopped = false;
                 if (comboBox2.Items.Count == 0)
                 {
-                    LoadAll(true);
+                    LoadAll(userdata.employeeID);
                 }
                 else
                 {
@@ -679,7 +693,7 @@ namespace MainForms
                     listView2.Clear();
                     if (comboBox2.Items.Count == 0)
                     {
-                        LoadAll(true);
+                        LoadAll(userdata.employeeID);
                     }
                     else
                     {
@@ -707,7 +721,7 @@ namespace MainForms
                     listView2.Clear();
                     if (comboBox1.Items.Count == 0)
                     {
-                        LoadAll(false);
+                        LoadAll(userdata.employeeID);
                     }
                     else
                     {
@@ -758,8 +772,11 @@ namespace MainForms
                     temp.X = this.Location.X + 18 + 25;
                     temp.Y = this.Location.Y + 163 + listView1.SelectedItems[0].Position.X + TextRenderer.MeasureText(listView1.SelectedItems[0].Text, listView1.Font).Height;
                     haltAllProcess = true;
-                    DialogResult tempDR = ActionForm.Form1.ShowMenu(listView1.SelectedItems[0], 1, userdata, temp);
-
+                    DialogResult tempDR = ActionForm.Form1.ShowMenu(listView1.SelectedItems, 1, userdata, temp);
+                    string[] spliter = { " đến " };
+                    string temp2 = comboBox2.SelectedItem.ToString().Substring(comboBox2.SelectedItem.ToString().LastIndexOf("Từ ") + 3);
+                    string[] temp3 = (temp2).Split(spliter, StringSplitOptions.None);
+                    LoadEmployee(Convert.ToInt32(temp3[0]) - 1, Convert.ToInt32(temp3[1]) - Convert.ToInt32(temp3[0]));
                     return;
                 }
                 else
@@ -768,8 +785,11 @@ namespace MainForms
                     temp.X = this.Location.X + 18 + 25;
                     temp.Y = this.Location.Y + 165;
                     haltAllProcess = true;
-                    DialogResult tempDR = ActionForm.Form1.ShowMenu(temp);
-
+                    DialogResult tempDR = ActionForm.Form1.ShowMenu(temp, 1);
+                    string[] spliter = { " đến " };
+                    string temp2 = comboBox2.SelectedItem.ToString().Substring(comboBox2.SelectedItem.ToString().LastIndexOf("Từ ") + 3);
+                    string[] temp3 = (temp2).Split(spliter, StringSplitOptions.None);
+                    LoadEmployee(Convert.ToInt32(temp3[0]) - 1, Convert.ToInt32(temp3[1]) - Convert.ToInt32(temp3[0]));
                     return;
                 }
             }
@@ -791,9 +811,12 @@ namespace MainForms
                     temp.X = this.Location.X + 18 + 25;
                     temp.Y = this.Location.Y + 163 + listView2.SelectedItems[0].Position.X + TextRenderer.MeasureText(listView2.SelectedItems[0].Text, listView2.Font).Height;
                     haltAllProcess = true;
-                    DialogResult tempDR = ActionForm.Form1.ShowMenu(listView2.SelectedItems[0], 2, userdata, temp);
+                    DialogResult tempDR = ActionForm.Form1.ShowMenu(listView2.SelectedItems, 2, userdata, temp);
                     haltAllProcess = false;
-
+                    string[] spliter = { " đến " };
+                    string temp2 = comboBox2.SelectedItem.ToString().Substring(comboBox2.SelectedItem.ToString().LastIndexOf("Từ ") + 3);
+                    string[] temp3 = (temp2).Split(spliter, StringSplitOptions.None);
+                    LoadPatient(Convert.ToInt32(temp3[0]) - 1, Convert.ToInt32(temp3[1]) - Convert.ToInt32(temp3[0]));
                     return;
                 }
                 else
@@ -802,12 +825,21 @@ namespace MainForms
                     temp.X = this.Location.X + 18 + 25;
                     temp.Y = this.Location.Y + 165;
                     haltAllProcess = true;
-                    DialogResult tempDR = ActionForm.Form1.ShowMenu(temp);
+                    DialogResult tempDR = ActionForm.Form1.ShowMenu(temp, 2);
                     haltAllProcess = false;
-
+                    string[] spliter = { " đến " };
+                    string temp2 = comboBox2.SelectedItem.ToString().Substring(comboBox2.SelectedItem.ToString().LastIndexOf("Từ ") + 3);
+                    string[] temp3 = (temp2).Split(spliter, StringSplitOptions.None);
+                    LoadPatient(Convert.ToInt32(temp3[0]) - 1, Convert.ToInt32(temp3[1]) - Convert.ToInt32(temp3[0]));
                     return;
                 }
             }
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            About.Form1 about = new About.Form1();
+            about.ShowDialog();
         }
     }
 }

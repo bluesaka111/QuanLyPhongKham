@@ -125,6 +125,10 @@
       <Project>{416016aa-41ea-426d-a2bf-cee62aa6d475}</Project>
       <Name>DataController</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DTObject\DTObject.csproj">
+      <Project>{0900a83b-8df4-4709-9302-ef898545516f}</Project>
+      <Name>DTObject</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\1458751996_PatientMale.ico" />

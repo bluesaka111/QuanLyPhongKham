@@ -15,7 +15,6 @@ namespace EmployeeInfo
 {
     public partial class EForm : Form
     {
-        ListViewItem item = new ListViewItem();
         Point oldP = new Point();
         private bool userIntended;
         private int intentType;
@@ -40,6 +39,10 @@ namespace EmployeeInfo
 
         private void ResetField(string eID)
         {
+            if (eID == "NULL")
+            {
+                return;
+            }
             txt_maNV.Text = (eID == "NULL" ? String.Empty : eID);
             if (Connection.sqlcon.State != ConnectionState.Closed)
             {
@@ -69,22 +72,28 @@ namespace EmployeeInfo
                 if (reader.HasRows)
                 {
                     reader.Read();
-                    txt_maNV.Text = (reader[0] == DBNull.Value ? "NULL" : reader[0].ToString());
-                    txt_HoNV.Text = (reader[1] == DBNull.Value ? "NULL" : reader[1].ToString());
-                    txt_TenNV.Text = (reader[2] == DBNull.Value ? "NULL" : reader[2].ToString());
-                    cb_GTNV.SelectedIndex = (reader[4].ToString() == "False" ? 0 : 1);
-                    txt_CVNV.Text = (reader[3] == DBNull.Value ? "NULL" : reader[3].ToString());
-                    txt_DThoai.Text = (reader[5] == DBNull.Value ? "NULL" : reader[5].ToString());
-                    txt_DiaChi.Text = (reader[6] == DBNull.Value ? "NULL" : reader[6].ToString());
-                    txt_BonusNV.Text = (reader[7] == DBNull.Value ? "NULL" : reader[7].ToString());
-                    txt_wDay.Text = (reader[8] == DBNull.Value ? "NULL" : reader[8].ToString());
+                    txt_maNV.Text = (reader["MaNV"] == DBNull.Value ? "NULL" : reader["MaNV"].ToString());
+                    txt_HoNV.Text = (reader["HoLotNV"] == DBNull.Value ? "NULL" : reader["HoLotNV"].ToString());
+                    txt_TenNV.Text = (reader["TenNV"] == DBNull.Value ? "NULL" : reader["TenNV"].ToString());
+                    cb_GTNV.SelectedIndex = (reader["GioiTinh"].ToString() == "False" ? 0 : 1);
+                    txt_CVNV.Text = (reader["ChucVu"] == DBNull.Value ? "NULL" : reader["ChucVu"].ToString());
+                    txt_DThoai.Text = (reader["SoDienThoai"] == DBNull.Value ? "NULL" : reader["SoDienThoai"].ToString());
+                    txt_DiaChi.Text = (reader["DiaChi"] == DBNull.Value ? "NULL" : reader["DiaChi"].ToString());
+                    txt_BonusNV.Text = (reader["ThuongLuong"] == DBNull.Value ? "NULL" : reader["ThuongLuong"].ToString());
+                    dtp_wDay.Value = (reader["NgayVaoLam"] == DBNull.Value ? DateTime.Now : Convert.ToDateTime(reader["NgayVaoLam"].ToString()));
+                    txt_LuongNV.Text = (reader["Luong"] == DBNull.Value ? "NULL" : reader["Luong"].ToString());
                     reader.Close();
                 }
 
                 sqlc.CommandText = "SELECT * FROM BenhAn WHERE MaNV = '" + txt_maNV.Text.Trim() + "'";
                 sqlc.CommandType = CommandType.Text;
                 reader = sqlc.ExecuteReader();
-                if(reader.HasRows)
+                if (!reader.HasRows)
+                {
+                    reader.Close();
+                    return;
+                }
+                if (reader.HasRows)
                 {
                     for(int i = 0; i < reader.FieldCount; i++)
                     {
@@ -113,6 +122,11 @@ namespace EmployeeInfo
                 sqlc.CommandText = "SELECT * FROM ThongTinDonThuoc WHERE MaNV = '" + txt_maNV.Text.Trim() + "'";
                 sqlc.CommandType = CommandType.Text;
                 reader = sqlc.ExecuteReader();
+                if(!reader.HasRows)
+                {
+                    reader.Close();
+                    return;
+                }
                 if (reader.HasRows)
                 {
                     for (int i = 0; i < reader.FieldCount; i++)
@@ -139,11 +153,13 @@ namespace EmployeeInfo
                     listView3.GridLines = true;
                 }
                 reader.Close();
+                pictureBox2.Load(@"http://localhost/employeePTS/" + eID.ToString());
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi khi truy cập dữ liệu của nhân viên " + eID + ": \n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Connection.sqlcon.Close();
+                return;
             }
         }
 
@@ -252,7 +268,7 @@ namespace EmployeeInfo
             {
                 foreach (Control es in c.Controls)
                 {
-                    if(es is Label || es is ComboBox)
+                    if(es is Label || es is ComboBox || es is DateTimePicker)
                     {
                         continue;
                     }
@@ -262,11 +278,22 @@ namespace EmployeeInfo
                         {
                             continue;
                         }
-                        if (es.Tag.ToString() == "NOT NULL READ ONLY")
+                        if(es.Tag.ToString().Contains("IGNORE") && intentType == 2)
+                        {
+                            continue;
+                        }
+                        if (es.Tag.ToString() == "NOT NULL READ ONLY" || es.Tag.ToString() == "NOT NULL")
                         {
                             if (intentType != 1)
                             {
-                                (es as TextBox).ReadOnly = userIntended;
+                                if((es as TextBox).Text == "NULL" || (es as TextBox).Text == "" || (es as TextBox).Text == String.Empty)
+                                {
+                                    (es as TextBox).ReadOnly = false;
+                                }
+                                else
+                                {
+                                    (es as TextBox).ReadOnly = userIntended;
+                                }
                             }
                             else
                             {
@@ -277,24 +304,42 @@ namespace EmployeeInfo
                         {
                             if (intentType != 1)
                             {
-                                (es as TextBox).ReadOnly = true;
+                                (es as TextBox).ReadOnly = userIntended;
                             }
                             else
                             {
-                                (es as TextBox).ReadOnly = false;
+                                (es as TextBox).ReadOnly = userIntended;
                             }
                         }
-                        if (es.Tag.ToString() == "NOT NULL")
+                        if (es.Tag.ToString() == "NOT NULL" || es.Tag.ToString() == "NOT NULL READ ONLY")
                         {
                             if (es.Text == "" || es.Text == String.Empty || es.Text == "NULL")
                             {
                                 c.BackColor = Color.Maroon;
                                 c.ForeColor = Color.Yellow;
+                                
+                                if (intentType == 1)
+                                {
+                                    bt_add_NV.Enabled = true;
+                                }
+                                else
+                                {
+                                    bt_add_NV.Enabled = false;
+                                }
                             }
                             else
                             {
                                 c.BackColor = Color.FromArgb(13, 77, 77);
                                 c.ForeColor = Color.White;
+                                bt_update_NV.Enabled = true;
+                                if (intentType == 1)
+                                {
+                                    bt_add_NV.Enabled = true;
+                                }
+                                else
+                                {
+                                    bt_add_NV.Enabled = false;
+                                }
                             }
                         }
                         else
@@ -309,7 +354,7 @@ namespace EmployeeInfo
             {
                 foreach (Control es in c.Controls)
                 {
-                    if (es is Label || es is ComboBox)
+                    if (es is Label || es is ComboBox || es is DateTimePicker)
                     {
                         continue;
                     }
@@ -319,11 +364,18 @@ namespace EmployeeInfo
                         {
                             continue;
                         }
-                        if (es.Tag.ToString() != "NOT NULL READ ONLY")
+                        if (es.Tag.ToString() == "NOT NULL READ ONLY" || es.Tag.ToString() == "NOT NULL")
                         {
                             if (intentType != 1)
                             {
-                                (es as TextBox).ReadOnly = userIntended;
+                                if ((es as TextBox).Text == "NULL")
+                                {
+                                    (es as TextBox).ReadOnly = false;
+                                }
+                                else
+                                {
+                                    (es as TextBox).ReadOnly = userIntended;
+                                }
                             }
                             else
                             {
@@ -341,21 +393,45 @@ namespace EmployeeInfo
                                 (es as TextBox).ReadOnly = false;
                             }
                         }
-                        if (es.Tag.ToString() == "NOT NULL")
+                        if (es.Tag.ToString() == "NOT NULL" || es.Tag.ToString() == "NOT NULL READ ONLY")
                         {
                             if (es.Text == "" || es.Text == String.Empty || es.Text == "NULL")
                             {
                                 c.BackColor = Color.Maroon;
                                 c.ForeColor = Color.Yellow;
+                                es.Text = "NULL";
+                                bt_update_NV.Enabled = false;
+                                if (intentType == 1)
+                                {
+                                    bt_add_NV.Enabled = true;
+                                }
+                                else
+                                {
+                                    bt_add_NV.Enabled = false;
+                                }
                             }
                             else
                             {
                                 c.BackColor = Color.FromArgb(13, 77, 77);
                                 c.ForeColor = Color.White;
+                                es.Text = "NULL";
+                                bt_update_NV.Enabled = true;
+                                if (intentType == 1)
+                                {
+                                    bt_add_NV.Enabled = true;
+                                }
+                                else
+                                {
+                                    bt_add_NV.Enabled = false;
+                                }
                             }
                         }
                         else
                         {
+                            if (es.Text == "" || es.Text == String.Empty || es.Text == "NULL" || es.Text == null)
+                            {
+                                es.Text = "NULL";
+                            }
                             c.BackColor = Color.FromArgb(13, 77, 77);
                             c.ForeColor = Color.White;
                         }
@@ -378,21 +454,299 @@ namespace EmployeeInfo
 
         private void button6_Click(object sender, EventArgs e)
         {
-            if(listView3.SelectedItems.Count == 0)
+            BenhAn.AddEdit ae;
+            if (listView1.Items.Count == 0)
             {
-                BenhAn.AddEdit ae = new BenhAn.AddEdit(null);
-                ae.ShowDialog();
+                ae = new BenhAn.AddEdit();
             }
+            else
+            {
+                ae = new BenhAn.AddEdit(listView1.SelectedItems[0]);
+            }
+            ae.ShowDialog();
+            ResetField(empID);
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            if (listView3.SelectedItems.Count == 0)
+            BenhAn.AddEdit ae;
+            if (listView1.Items.Count == 0)
             {
                 return;
             }
-            BenhAn.AddEdit ae = new BenhAn.AddEdit(listView3.SelectedItems[0]);
+            else
+            {
+                ae = new BenhAn.AddEdit(listView1.SelectedItems[0]);
+            }
             ae.ShowDialog();
+            ResetField(empID);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            BenhAn.Delete del;
+            if (listView1.Items.Count == 0)
+            {
+                return;
+            }
+            else
+            {
+                del = new BenhAn.Delete(listView1.SelectedItems);
+            }
+            del.ShowDialog();
+            ResetField(empID);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DonThuoc.AddEdit ae;
+            if (listView1.Items.Count == 0)
+            {
+                ae = new DonThuoc.AddEdit();
+            }
+            else
+            {
+                ae = new DonThuoc.AddEdit(listView1.SelectedItems[0]);
+            }
+            ae.ShowDialog();
+            ResetField(empID);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            DonThuoc.AddEdit ae;
+            if (listView1.Items.Count == 0)
+            {
+                return;
+            }
+            else
+            {
+                ae = new DonThuoc.AddEdit(listView1.SelectedItems[0]);
+            }
+            ae.ShowDialog();
+            ResetField(empID);
+        }
+
+        private void EForm_Load(object sender, EventArgs e)
+        {
+            timer1.Start();
+        }
+
+        private void bt_add_NV_Click(object sender, EventArgs e)
+        {
+            if (txt_maNV.Text == "" || txt_maNV.Text == String.Empty || txt_maNV.Text == null)
+            {
+                MessageBox.Show("Vui lòng điền vào mã Bệnh Nhân trước khi tiếp tục");
+                return;
+            }
+            try
+            {
+                if (Connection.sqlcon.State != ConnectionState.Open)
+                {
+                    Connection.sqlcon.Open();
+                }
+                SqlCommand sqlc = new SqlCommand();
+                sqlc.Connection = Connection.sqlcon;
+                sqlc.CommandText = "INSERT INTO QuanLyPhongKham.dbo.NhanVien VALUES ( @MaNV, @HoNV, @TenNV, @ChucVu, @GioiTinh, @DienThoai, @DiaChi, @ThuongLuong, @NgayVaoLam, @Luong)";
+                sqlc.CommandType = CommandType.Text;
+                sqlc.Parameters.Clear();
+                    sqlc.Parameters.Add("@MaNV", SqlDbType.NChar);
+                    sqlc.Parameters.Add("@HoNV", SqlDbType.NVarChar);
+                    sqlc.Parameters.Add("@TenNV", SqlDbType.NVarChar);
+                    sqlc.Parameters.Add("@GioiTinh", SqlDbType.Bit);
+                    sqlc.Parameters.Add("@DiaChi", SqlDbType.NVarChar);
+                    sqlc.Parameters.Add("@DienThoai", SqlDbType.NChar);
+                    sqlc.Parameters.Add("@ChucVu", SqlDbType.NVarChar);
+                    sqlc.Parameters.Add("@ThuongLuong", SqlDbType.Real);
+                    sqlc.Parameters.Add("@NgayVaoLam", SqlDbType.DateTime);
+                sqlc.Parameters.Add("@Luong", SqlDbType.Money);
+                sqlc.Parameters["@MaNV"].Value = txt_maNV.Text;
+                sqlc.Parameters["@MaNV"].SqlDbType = SqlDbType.NChar;
+                sqlc.Parameters["@HoNV"].Value = txt_HoNV.Text;
+                sqlc.Parameters["@HoNV"].SqlDbType = SqlDbType.NVarChar;
+                sqlc.Parameters["@TenNV"].Value = txt_TenNV.Text;
+                sqlc.Parameters["@TenNV"].SqlDbType = SqlDbType.NVarChar;
+                sqlc.Parameters["@GioiTinh"].Value = cb_GTNV.SelectedIndex;
+                sqlc.Parameters["@GioiTinh"].SqlDbType = SqlDbType.Bit;
+                sqlc.Parameters["@DiaChi"].Value = txt_DiaChi.Text;
+                sqlc.Parameters["@DiaChi"].SqlDbType = SqlDbType.NVarChar;
+                sqlc.Parameters["@DienThoai"].Value = txt_DThoai.Text;
+                sqlc.Parameters["@DienThoai"].SqlDbType = SqlDbType.NChar;
+
+                sqlc.Parameters["@ChucVu"].Value = txt_CVNV.Text;
+                sqlc.Parameters["@ChucVu"].SqlDbType = SqlDbType.NVarChar;
+
+                sqlc.Parameters["@NgayVaoLam"].Value = dtp_wDay.Value;
+                sqlc.Parameters["@NgayVaoLam"].SqlDbType = SqlDbType.DateTime;
+
+                sqlc.Parameters["@Luong"].Value = txt_LuongNV.Text;
+                sqlc.Parameters["@Luong"].SqlDbType = SqlDbType.Money;
+
+                sqlc.Parameters["@ThuongLuong"].Value = txt_BonusNV.Text;
+                sqlc.Parameters["@ThuongLuong"].SqlDbType = SqlDbType.Real;
+
+                sqlc.ExecuteNonQuery();
+                MessageBox.Show("Thêm thành công");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Lỗi");
+            }
+        }
+
+        private void bt_update_NV_Click(object sender, EventArgs e)
+        {
+            if (txt_maNV.Text == "" || txt_maNV.Text == String.Empty || txt_maNV.Text == null)
+            {
+                MessageBox.Show("Vui lòng điền vào mã Bệnh Nhân trước khi tiếp tục");
+                return;
+            }
+            try
+            {
+                if (Connection.sqlcon.State != ConnectionState.Open)
+                {
+                    Connection.sqlcon.Open();
+                }
+                SqlCommand sqlc = new SqlCommand();
+                sqlc.Connection = Connection.sqlcon;
+                sqlc.CommandText = "UPDATE QuanLyPhongKham.dbo.NhanVien SET HoLotNV = @HoNV, TenNV = @TenNV, ChucVu = @ChucVu, GioiTinh = @GioiTinh, SoDienThoai = @DienThoai, DiaChi = @DiaChi, ThuongLuong = @ThuongLuong, NgayVaoLam = @NgayVaoLam, Luong = @Luong WHERE MaNV = @MaNV";
+                sqlc.CommandType = CommandType.Text;
+                sqlc.Parameters.Clear();
+                    sqlc.Parameters.Add("@MaNV", SqlDbType.NChar);
+                    sqlc.Parameters.Add("@HoNV", SqlDbType.NVarChar);
+                    sqlc.Parameters.Add("@TenNV", SqlDbType.NVarChar);
+                    sqlc.Parameters.Add("@GioiTinh", SqlDbType.Bit);
+                    sqlc.Parameters.Add("@DiaChi", SqlDbType.NVarChar);
+                    sqlc.Parameters.Add("@DienThoai", SqlDbType.NChar);
+                    sqlc.Parameters.Add("@ChucVu", SqlDbType.NVarChar);
+                    sqlc.Parameters.Add("@ThuongLuong", SqlDbType.Real);
+                    sqlc.Parameters.Add("@NgayVaoLam", SqlDbType.DateTime);
+                    sqlc.Parameters.Add("@Luong", SqlDbType.Money);
+                sqlc.Parameters["@MaNV"].Value = txt_maNV.Text;
+                sqlc.Parameters["@MaNV"].SqlDbType = SqlDbType.NChar;
+                sqlc.Parameters["@HoNV"].Value = txt_HoNV.Text;
+                sqlc.Parameters["@HoNV"].SqlDbType = SqlDbType.NVarChar;
+                sqlc.Parameters["@TenNV"].Value = txt_TenNV.Text;
+                sqlc.Parameters["@TenNV"].SqlDbType = SqlDbType.NVarChar;
+                sqlc.Parameters["@GioiTinh"].Value = cb_GTNV.SelectedIndex;
+                sqlc.Parameters["@GioiTinh"].SqlDbType = SqlDbType.Bit;
+                sqlc.Parameters["@DiaChi"].Value = txt_DiaChi.Text;
+                sqlc.Parameters["@DiaChi"].SqlDbType = SqlDbType.NVarChar;
+                sqlc.Parameters["@DienThoai"].Value = txt_DThoai.Text;
+                sqlc.Parameters["@DienThoai"].SqlDbType = SqlDbType.NChar;
+
+                sqlc.Parameters["@ChucVu"].Value = txt_CVNV.Text;
+                sqlc.Parameters["@ChucVu"].SqlDbType = SqlDbType.NVarChar;
+
+                sqlc.Parameters["@NgayVaoLam"].Value = dtp_wDay.Value;
+                sqlc.Parameters["@NgayVaoLam"].SqlDbType = SqlDbType.DateTime;
+
+                sqlc.Parameters["@Luong"].Value = txt_LuongNV.Text;
+                sqlc.Parameters["@Luong"].SqlDbType = SqlDbType.Money;
+
+                sqlc.Parameters["@ThuongLuong"].Value = txt_BonusNV.Text;
+                sqlc.Parameters["@ThuongLuong"].SqlDbType = SqlDbType.Real;
+
+                sqlc.ExecuteNonQuery();
+                MessageBox.Show("Cập nhật thành công");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Lỗi");
+            }
+        }
+
+        private void bt_delete_NV_Click(object sender, EventArgs e)
+        {
+            if (txt_maNV.Text == "" || txt_maNV.Text == String.Empty || txt_maNV.Text == null)
+            {
+                MessageBox.Show("Vui lòng điền vào mã Nhân Viên trước khi tiếp tục");
+                return;
+            }
+            try
+            {
+                if (Connection.sqlcon.State != ConnectionState.Open)
+                {
+                    Connection.sqlcon.Open();
+                }
+                SqlCommand sqlc = new SqlCommand();
+                sqlc.Connection = Connection.sqlcon;
+                sqlc.CommandText = "DELETE FROM QuanLyPhongKham.dbo.ThongTinDonThuoc WHERE QuanLyPhongKham.dbo.ThongTinDonThuoc.MaNV = @MaNV";
+                sqlc.CommandType = CommandType.Text;
+                    sqlc.Parameters.Clear();
+                    sqlc.Parameters.Add("MaNV", SqlDbType.NChar);
+                sqlc.Parameters["@MaNV"].Value = txt_maNV.Text;
+                sqlc.Parameters["@MaNV"].SqlDbType = SqlDbType.NChar;
+                sqlc.ExecuteNonQuery();
+                sqlc.CommandText = "DELETE FROM QuanLyPhongKham.dbo.BenhAn WHERE QuanLyPhongKham.dbo.BenhAn.MaNV = @MaNV";
+                sqlc.CommandType = CommandType.Text;
+                    sqlc.Parameters.Clear();
+                sqlc.Parameters.Add("MaNV", SqlDbType.NChar);
+                sqlc.Parameters["@MaNV"].Value = txt_maNV.Text;
+                sqlc.Parameters["@MaNV"].SqlDbType = SqlDbType.NChar;
+                sqlc.ExecuteNonQuery();
+                sqlc.CommandText = "DELETE FROM NhanVien WHERE MaNV = @MaNV";
+                sqlc.CommandType = CommandType.Text;
+                    sqlc.Parameters.Clear();
+                    sqlc.Parameters.Add("MaNV", SqlDbType.NChar);
+                sqlc.Parameters["@MaNV"].Value = txt_maNV.Text;
+                sqlc.Parameters["@MaNV"].SqlDbType = SqlDbType.NChar;
+                sqlc.ExecuteNonQuery();
+                MessageBox.Show("Xóa thành công");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Lỗi");
+            }
+        }
+
+        private void txt_LuongNV_TextChanged(object sender, EventArgs e)
+        {
+            if(txt_BonusNV.Text == "" || txt_BonusNV.Text == "NULL" || txt_BonusNV.Text == String.Empty || txt_BonusNV.Text == null)
+            {
+                return;
+            }
+            if (txt_LuongNV.Text == "" || txt_LuongNV.Text == "NULL" || txt_LuongNV.Text == String.Empty || txt_LuongNV.Text == null)
+            {
+                return;
+            }
+            try
+            {
+                textBox2.Text = ((Convert.ToDouble(txt_BonusNV.Text) * Convert.ToDouble(txt_LuongNV.Text)) + Convert.ToDouble(txt_LuongNV.Text)).ToString();
+            }
+            catch (Exception) { return; }
+        }
+
+        private void txt_BonusNV_TextChanged(object sender, EventArgs e)
+        {
+            if (txt_BonusNV.Text == "" || txt_BonusNV.Text == "NULL" || txt_BonusNV.Text == String.Empty || txt_BonusNV.Text == null)
+            {
+                return;
+            }
+            if (txt_LuongNV.Text == "" || txt_LuongNV.Text == "NULL" || txt_LuongNV.Text == String.Empty || txt_LuongNV.Text == null)
+            {
+                return;
+            }
+            try
+            {
+                textBox2.Text = ((Convert.ToDouble(txt_BonusNV.Text) * Convert.ToDouble(txt_LuongNV.Text)) + Convert.ToDouble(txt_LuongNV.Text)).ToString();
+            }
+            catch (Exception) { return; }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            DonThuoc.Delete del;
+            if (listView1.Items.Count == 0)
+            {
+                return;
+            }
+            else
+            {
+                del = new DonThuoc.Delete(listView1.SelectedItems);
+            }
+            del.ShowDialog();
+            ResetField(empID);
         }
     }
 }

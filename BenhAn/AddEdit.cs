@@ -19,8 +19,9 @@ namespace BenhAn
         {
             InitializeComponent();
             panel13.Enabled = false;
-            sitem = null;
             textBox1.ReadOnly = false;
+            panel6.Enabled = true;
+            sitem = null;
         }
 
         public AddEdit(ListViewItem item)
@@ -30,6 +31,7 @@ namespace BenhAn
             {
                 panel13.Enabled = false;
                 textBox1.ReadOnly = false;
+                panel6.Enabled = true;
                 return;
             }
             else
@@ -37,8 +39,8 @@ namespace BenhAn
                 panel13.Enabled = true;
                 sitem = item;
                 textBox1.Text = item.SubItems[0].Text;
-                comboBox1.SelectedItem = item.SubItems[1].Text;
-                comboBox2.SelectedItem = item.SubItems[2].Text;
+                textBox2.Text = item.SubItems[1].Text;
+                textBox3.Text = item.SubItems[2].Text;
                 DateTime dt = Convert.ToDateTime(item.SubItems[3].Text);
                 dateTimePicker1.Value = dt;
                 textBox1.ReadOnly = true;
@@ -65,58 +67,84 @@ namespace BenhAn
             }
             else
             {
-                ListViewItem item2 = sitem;
-                item2.SubItems[0].Text = textBox1.Text;
-                item2.SubItems[1].Text = comboBox1.SelectedItem.ToString();
-                item2.SubItems[2].Text = comboBox2.SelectedItem.ToString();
-                if(Dialog.MainForm.DShowDialog(MessageBoxButtons.OKCancel, "Xác nhận", "Bạn có muốn thay đổi " + ListViewItemToString(sitem) + "\nthành\n" + ListViewItemToString(item2) + "/nhay không?") == DialogResult.OK)
+                SqlCommand sqlc = new SqlCommand();
+                sqlc.CommandText = "UPDATE TABLE QuanLyPhongkham.dbo.BenhAn SET MaNV = @MaNV, MaBN = @MaBN, NgayLapBAn = @NgayLap WHERE MaBA = @MaBA";
+                sqlc.Parameters.Add("@MaBA", SqlDbType.NChar);
+                sqlc.Parameters.Add("@MaNV", SqlDbType.NChar);
+                sqlc.Parameters.Add("@MaBN", SqlDbType.NChar);
+                sqlc.Parameters.Add("@NgayLapBA", SqlDbType.DateTime);
+                sqlc.Parameters["@MaBA"].Value = textBox1.Text;
+                sqlc.Parameters["@MaNV"].Value = textBox2.Text;
+                sqlc.Parameters["@MaBN"].Value = textBox3.Text;
+                sqlc.Parameters["@NgayLapBA"].Value = dateTimePicker1.Value;
+                sqlc.CommandType = CommandType.Text;
+                try
                 {
-                    SqlCommand sqlc = new SqlCommand();
-                    sqlc.CommandText = "UPDATE TABLE QuanLyPhongkham.dbo.BenhAn SET MaNV = N'" + comboBox1.SelectedItem.ToString() + "', MaBN = N'" + comboBox2.SelectedItem.ToString() + "', NgayLapBAn = '" + dateTimePicker1.Value.ToString() + "' WHERE MaBA = '" + textBox1.Text + "'";
-                    sqlc.CommandType = CommandType.Text;
-                    try
+                    if(Connection.sqlcon.State != ConnectionState.Open)
                     {
-                        if(Connection.sqlcon.State != ConnectionState.Open)
-                        {
-                            Connection.sqlcon.Open();
-                        }
-                        sqlc.Connection = Connection.sqlcon;
-                        sqlc.ExecuteNonQuery();
-                        Dialog.MainForm.DShowDialog(MessageBoxButtons.OK, "Thành công", "Cập nhật thành công");
+                        Connection.sqlcon.Open();
                     }
-                    catch(Exception ex)
-                    {
-                        Dialog.MainForm.DShowDialog(MessageBoxButtons.OK, "Lỗi", ex.Message);
-                    }
+                    sqlc.Connection = Connection.sqlcon;
+                    sqlc.ExecuteNonQuery();
+                    MessageBox.Show("Cập nhật thành công", "Thành công");
+                    this.Close();
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Lỗi");
                 }
             }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ListViewItem item2 = sitem;
-            item2.SubItems[0].Text = textBox1.Text;
-            item2.SubItems[1].Text = comboBox1.SelectedItem.ToString();
-            item2.SubItems[2].Text = comboBox2.SelectedItem.ToString();
-            if (Dialog.MainForm.DShowDialog(MessageBoxButtons.OKCancel, "Xác nhận", "Bạn có muốn thêm " + ListViewItemToString(item2) + "/nvào cơ sở dữ liệu hay không?") == DialogResult.OK)
+            SqlCommand sqlc = new SqlCommand();
+            sqlc.CommandText = "INSERT INTO QuanLyPhongkham.dbo.BenhAn VALUES(@MaBA, @MaNV, @MaBN, @NgayLapBA)";
+            sqlc.Parameters.Add("@MaBA", SqlDbType.NChar);
+            sqlc.Parameters.Add("@MaNV", SqlDbType.NChar);
+            sqlc.Parameters.Add("@MaBN", SqlDbType.NChar);
+            sqlc.Parameters.Add("@NgayLapBA", SqlDbType.DateTime);
+            sqlc.Parameters["@MaBA"].Value = textBox1.Text;
+            sqlc.Parameters["@MaNV"].Value = textBox2.Text;
+            sqlc.Parameters["@MaBN"].Value = textBox3.Text;
+            sqlc.Parameters["@NgayLapBA"].Value = dateTimePicker1.Value;
+            sqlc.CommandType = CommandType.Text;
+            try
             {
-                SqlCommand sqlc = new SqlCommand();
-                sqlc.CommandText = "INSERT INTO QuanLyPhongkham.dbo.BenhAn VALUES(N'" + comboBox1.SelectedItem.ToString() + "', N'" + comboBox2.SelectedItem.ToString() + "', '" + dateTimePicker1.Value.ToString() + "')";
-                sqlc.CommandType = CommandType.Text;
-                try
+                if (Connection.sqlcon.State != ConnectionState.Open)
                 {
-                    if (Connection.sqlcon.State != ConnectionState.Open)
-                    {
-                        Connection.sqlcon.Open();
-                    }
-                    sqlc.Connection = Connection.sqlcon;
-                    sqlc.ExecuteNonQuery();
-                    Dialog.MainForm.DShowDialog(MessageBoxButtons.OK, "Thành công", "Thêm dữ liệu thành công");
+                    Connection.sqlcon.Open();
                 }
-                catch (Exception ex)
-                {
-                    Dialog.MainForm.DShowDialog(MessageBoxButtons.OK, "Lỗi", ex.Message);
-                }
+                sqlc.Connection = Connection.sqlcon;
+                sqlc.ExecuteNonQuery();
+                MessageBox.Show("Cập nhật thành công", "Thành công");
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Lỗi");
+            }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (sitem == null)
+            {
+                panel13.Enabled = false;
+                panel6.Enabled = true;
+                textBox1.ReadOnly = false;
+                panel13.Visible = false;
+                panel6.Visible = true;
+                return;
+            }
+            else
+            {
+                panel13.Enabled = true;
+                panel6.Enabled = false;
+                textBox1.ReadOnly = true;
+                panel13.Visible = true;
+                panel6.Visible = false;
+                return;
             }
         }
     }

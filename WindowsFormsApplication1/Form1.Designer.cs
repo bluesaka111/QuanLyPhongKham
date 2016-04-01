@@ -93,6 +93,7 @@
             this.button2.TabStop = false;
             this.toolTip1.SetToolTip(this.button2, "Xóa hồ sơ nhân viên");
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // panel10
             // 
@@ -166,6 +167,7 @@
             this.button4.TabStop = false;
             this.toolTip1.SetToolTip(this.button4, "Thêm nhân viên");
             this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // panel6
             // 

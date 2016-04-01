@@ -92,6 +92,8 @@
             this.button4 = new System.Windows.Forms.Button();
             this.tabItem4 = new DevComponents.DotNetBar.TabItem(this.components);
             this.panel3 = new System.Windows.Forms.Panel();
+            this.panel17 = new System.Windows.Forms.Panel();
+            this.panel21 = new System.Windows.Forms.Panel();
             this.tabControlPanel3.SuspendLayout();
             this.panel15.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -126,6 +128,7 @@
             this.panel22.SuspendLayout();
             this.panel14.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.panel17.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControlPanel3
@@ -137,7 +140,7 @@
             this.tabControlPanel3.Location = new System.Drawing.Point(0, 25);
             this.tabControlPanel3.Name = "tabControlPanel3";
             this.tabControlPanel3.Padding = new System.Windows.Forms.Padding(1);
-            this.tabControlPanel3.Size = new System.Drawing.Size(1057, 384);
+            this.tabControlPanel3.Size = new System.Drawing.Size(1059, 384);
             this.tabControlPanel3.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
             this.tabControlPanel3.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
             this.tabControlPanel3.Style.BorderColor.Color = System.Drawing.Color.Black;
@@ -157,7 +160,7 @@
             this.panel15.Controls.Add(this.label6);
             this.panel15.Location = new System.Drawing.Point(24, 263);
             this.panel15.Name = "panel15";
-            this.panel15.Size = new System.Drawing.Size(1008, 25);
+            this.panel15.Size = new System.Drawing.Size(1010, 25);
             this.panel15.TabIndex = 11;
             // 
             // panel16
@@ -165,7 +168,7 @@
             this.panel16.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel16.Location = new System.Drawing.Point(190, 0);
             this.panel16.Name = "panel16";
-            this.panel16.Size = new System.Drawing.Size(816, 23);
+            this.panel16.Size = new System.Drawing.Size(818, 23);
             this.panel16.TabIndex = 1;
             // 
             // label6
@@ -190,7 +193,7 @@
             this.panel5.Controls.Add(this.label5);
             this.panel5.Location = new System.Drawing.Point(24, 97);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1007, 25);
+            this.panel5.Size = new System.Drawing.Size(1009, 25);
             this.panel5.TabIndex = 10;
             // 
             // label5
@@ -201,7 +204,7 @@
             this.label5.Location = new System.Drawing.Point(0, 0);
             this.label5.Name = "label5";
             this.label5.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.label5.Size = new System.Drawing.Size(1005, 23);
+            this.label5.Size = new System.Drawing.Size(1007, 23);
             this.label5.TabIndex = 0;
             this.label5.Text = "Đăng nhập tài khoản";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -217,7 +220,7 @@
             this.panel6.ForeColor = System.Drawing.Color.White;
             this.panel6.Location = new System.Drawing.Point(24, 128);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(1008, 129);
+            this.panel6.Size = new System.Drawing.Size(1010, 129);
             this.panel6.TabIndex = 7;
             // 
             // pictureBox4
@@ -241,7 +244,7 @@
             this.panel7.Controls.Add(this.panel13);
             this.panel7.Location = new System.Drawing.Point(116, 23);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(859, 80);
+            this.panel7.Size = new System.Drawing.Size(861, 80);
             this.panel7.TabIndex = 0;
             // 
             // panel8
@@ -251,14 +254,14 @@
             this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel8.Location = new System.Drawing.Point(0, 48);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(859, 32);
+            this.panel8.Size = new System.Drawing.Size(861, 32);
             this.panel8.TabIndex = 2;
             // 
             // panel9
             // 
             this.panel9.Controls.Add(this.button_reset);
             this.panel9.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel9.Location = new System.Drawing.Point(653, 0);
+            this.panel9.Location = new System.Drawing.Point(655, 0);
             this.panel9.Margin = new System.Windows.Forms.Padding(0);
             this.panel9.Name = "panel9";
             this.panel9.Padding = new System.Windows.Forms.Padding(3);
@@ -283,7 +286,7 @@
             // 
             this.panel10.Controls.Add(this.button_login);
             this.panel10.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel10.Location = new System.Drawing.Point(756, 0);
+            this.panel10.Location = new System.Drawing.Point(758, 0);
             this.panel10.Margin = new System.Windows.Forms.Padding(0);
             this.panel10.Name = "panel10";
             this.panel10.Padding = new System.Windows.Forms.Padding(3);
@@ -313,7 +316,7 @@
             this.panel11.Location = new System.Drawing.Point(0, 24);
             this.panel11.Name = "panel11";
             this.panel11.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.panel11.Size = new System.Drawing.Size(859, 24);
+            this.panel11.Size = new System.Drawing.Size(861, 24);
             this.panel11.TabIndex = 1;
             // 
             // txt_password
@@ -323,7 +326,7 @@
             this.txt_password.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txt_password.Location = new System.Drawing.Point(121, 2);
             this.txt_password.Name = "txt_password";
-            this.txt_password.Size = new System.Drawing.Size(738, 20);
+            this.txt_password.Size = new System.Drawing.Size(740, 20);
             this.txt_password.TabIndex = 2;
             this.txt_password.UseSystemPasswordChar = true;
             // 
@@ -348,7 +351,7 @@
             this.panel13.Location = new System.Drawing.Point(0, 0);
             this.panel13.Name = "panel13";
             this.panel13.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.panel13.Size = new System.Drawing.Size(859, 24);
+            this.panel13.Size = new System.Drawing.Size(861, 24);
             this.panel13.TabIndex = 0;
             // 
             // txt_username
@@ -358,7 +361,7 @@
             this.txt_username.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txt_username.Location = new System.Drawing.Point(121, 2);
             this.txt_username.Name = "txt_username";
-            this.txt_username.Size = new System.Drawing.Size(738, 20);
+            this.txt_username.Size = new System.Drawing.Size(740, 20);
             this.txt_username.TabIndex = 1;
             // 
             // label4
@@ -435,6 +438,7 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.panel17);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.panel4);
             this.panel1.Controls.Add(this.label1);
@@ -545,6 +549,7 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.label1_MouseDown);
             this.pictureBox1.MouseLeave += new System.EventHandler(this.pictureBox1_MouseLeave);
             this.pictureBox1.MouseHover += new System.EventHandler(this.pictureBox1_MouseHover);
@@ -567,7 +572,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.tabControl2);
             this.splitContainer1.Panel2MinSize = 0;
             this.splitContainer1.Size = new System.Drawing.Size(1246, 409);
-            this.splitContainer1.SplitterDistance = 1057;
+            this.splitContainer1.SplitterDistance = 1059;
             this.splitContainer1.SplitterWidth = 2;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -609,8 +614,8 @@
             this.tabControl1.ColorScheme.TabItemText = System.Drawing.SystemColors.ControlLight;
             this.tabControl1.ColorScheme.TabPanelBackground = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
             this.tabControl1.ColorScheme.TabPanelBorder = System.Drawing.Color.Black;
-            this.tabControl1.Controls.Add(this.tabControlPanel3);
             this.tabControl1.Controls.Add(this.tabControlPanel1);
+            this.tabControl1.Controls.Add(this.tabControlPanel3);
             this.tabControl1.Controls.Add(this.tabControlPanel2);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.FixedTabSize = new System.Drawing.Size(95, 0);
@@ -618,7 +623,7 @@
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedTabFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.tabControl1.SelectedTabIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1057, 409);
+            this.tabControl1.Size = new System.Drawing.Size(1059, 409);
             this.tabControl1.Style = DevComponents.DotNetBar.eTabStripStyle.Flat;
             this.tabControl1.TabIndex = 0;
             this.tabControl1.TabLayoutType = DevComponents.DotNetBar.eTabLayoutType.FixedWithNavigationBox;
@@ -635,7 +640,7 @@
             this.tabControlPanel1.Location = new System.Drawing.Point(0, 25);
             this.tabControlPanel1.Name = "tabControlPanel1";
             this.tabControlPanel1.Padding = new System.Windows.Forms.Padding(1);
-            this.tabControlPanel1.Size = new System.Drawing.Size(1057, 384);
+            this.tabControlPanel1.Size = new System.Drawing.Size(1059, 384);
             this.tabControlPanel1.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
             this.tabControlPanel1.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
             this.tabControlPanel1.Style.BorderColor.Color = System.Drawing.Color.Black;
@@ -656,7 +661,7 @@
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(1, 22);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1055, 361);
+            this.listView1.Size = new System.Drawing.Size(1057, 361);
             this.listView1.TabIndex = 5;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -671,7 +676,7 @@
             this.panel18.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel18.Location = new System.Drawing.Point(1, 1);
             this.panel18.Name = "panel18";
-            this.panel18.Size = new System.Drawing.Size(1055, 21);
+            this.panel18.Size = new System.Drawing.Size(1057, 21);
             this.panel18.TabIndex = 4;
             // 
             // comboBox1
@@ -702,7 +707,7 @@
             this.button2.FlatAppearance.BorderSize = 0;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(935, 0);
+            this.button2.Location = new System.Drawing.Point(937, 0);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(120, 21);
             this.button2.TabIndex = 0;
@@ -726,7 +731,7 @@
             this.tabControlPanel2.Location = new System.Drawing.Point(0, 25);
             this.tabControlPanel2.Name = "tabControlPanel2";
             this.tabControlPanel2.Padding = new System.Windows.Forms.Padding(1);
-            this.tabControlPanel2.Size = new System.Drawing.Size(1057, 384);
+            this.tabControlPanel2.Size = new System.Drawing.Size(1059, 384);
             this.tabControlPanel2.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
             this.tabControlPanel2.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
             this.tabControlPanel2.Style.BorderColor.Color = System.Drawing.Color.Black;
@@ -747,7 +752,7 @@
             this.listView2.HideSelection = false;
             this.listView2.Location = new System.Drawing.Point(1, 22);
             this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(1055, 361);
+            this.listView2.Size = new System.Drawing.Size(1057, 361);
             this.listView2.TabIndex = 2;
             this.listView2.UseCompatibleStateImageBehavior = false;
             this.listView2.View = System.Windows.Forms.View.Details;
@@ -762,7 +767,7 @@
             this.panel19.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel19.Location = new System.Drawing.Point(1, 1);
             this.panel19.Name = "panel19";
-            this.panel19.Size = new System.Drawing.Size(1055, 21);
+            this.panel19.Size = new System.Drawing.Size(1057, 21);
             this.panel19.TabIndex = 3;
             // 
             // comboBox2
@@ -792,7 +797,7 @@
             this.button3.Dock = System.Windows.Forms.DockStyle.Right;
             this.button3.FlatAppearance.BorderSize = 0;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Location = new System.Drawing.Point(935, 0);
+            this.button3.Location = new System.Drawing.Point(937, 0);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(120, 21);
             this.button3.TabIndex = 0;
@@ -852,7 +857,7 @@
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedTabFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.tabControl2.SelectedTabIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(187, 409);
+            this.tabControl2.Size = new System.Drawing.Size(185, 409);
             this.tabControl2.Style = DevComponents.DotNetBar.eTabStripStyle.Flat;
             this.tabControl2.TabIndex = 1;
             this.tabControl2.TabLayoutType = DevComponents.DotNetBar.eTabLayoutType.FixedWithNavigationBox;
@@ -866,7 +871,7 @@
             this.tabControlPanel4.Location = new System.Drawing.Point(0, 25);
             this.tabControlPanel4.Name = "tabControlPanel4";
             this.tabControlPanel4.Padding = new System.Windows.Forms.Padding(1);
-            this.tabControlPanel4.Size = new System.Drawing.Size(187, 384);
+            this.tabControlPanel4.Size = new System.Drawing.Size(185, 384);
             this.tabControlPanel4.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
             this.tabControlPanel4.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
             this.tabControlPanel4.Style.BorderColor.Color = System.Drawing.Color.Black;
@@ -885,7 +890,7 @@
             this.panel22.Margin = new System.Windows.Forms.Padding(0);
             this.panel22.Name = "panel22";
             this.panel22.Padding = new System.Windows.Forms.Padding(25);
-            this.panel22.Size = new System.Drawing.Size(185, 382);
+            this.panel22.Size = new System.Drawing.Size(183, 382);
             this.panel22.TabIndex = 0;
             // 
             // panel14
@@ -895,7 +900,7 @@
             this.panel14.Location = new System.Drawing.Point(25, 25);
             this.panel14.Name = "panel14";
             this.panel14.Padding = new System.Windows.Forms.Padding(0, 5, 0, 5);
-            this.panel14.Size = new System.Drawing.Size(135, 45);
+            this.panel14.Size = new System.Drawing.Size(133, 45);
             this.panel14.TabIndex = 0;
             // 
             // button4
@@ -904,7 +909,7 @@
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.Location = new System.Drawing.Point(0, 5);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(135, 35);
+            this.button4.Size = new System.Drawing.Size(133, 35);
             this.button4.TabIndex = 0;
             this.button4.UseVisualStyleBackColor = true;
             // 
@@ -925,6 +930,23 @@
             this.panel3.Padding = new System.Windows.Forms.Padding(15);
             this.panel3.Size = new System.Drawing.Size(1278, 441);
             this.panel3.TabIndex = 3;
+            // 
+            // panel17
+            // 
+            this.panel17.Controls.Add(this.panel21);
+            this.panel17.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel17.Location = new System.Drawing.Point(75, 38);
+            this.panel17.Name = "panel17";
+            this.panel17.Size = new System.Drawing.Size(1120, 37);
+            this.panel17.TabIndex = 6;
+            // 
+            // panel21
+            // 
+            this.panel21.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel21.Location = new System.Drawing.Point(945, 0);
+            this.panel21.Name = "panel21";
+            this.panel21.Size = new System.Drawing.Size(175, 37);
+            this.panel21.TabIndex = 0;
             // 
             // Form1
             // 
@@ -980,6 +1002,7 @@
             this.panel22.ResumeLayout(false);
             this.panel14.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
+            this.panel17.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1047,6 +1070,8 @@
         private System.Windows.Forms.Button button4;
         private DevComponents.DotNetBar.TabItem tabItem4;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel17;
+        private System.Windows.Forms.Panel panel21;
     }
 }
 

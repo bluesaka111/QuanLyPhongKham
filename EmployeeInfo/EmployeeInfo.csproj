@@ -37,17 +37,39 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\DevComponents.DotNetBar2.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
+    <Reference Include="System">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Core">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Deployment">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EForm.cs">
@@ -100,9 +122,9 @@
       <Project>{416016aa-41ea-426d-a2bf-cee62aa6d475}</Project>
       <Name>DataController</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Dialog\Dialog.csproj">
-      <Project>{87e1b812-8112-4b5b-bf76-9541d48f0bdc}</Project>
-      <Name>Dialog</Name>
+    <ProjectReference Include="..\DonThuoc\DonThuoc.csproj">
+      <Project>{c48b96fa-7151-4612-970d-218212349cb3}</Project>
+      <Name>DonThuoc</Name>
     </ProjectReference>
     <ProjectReference Include="..\DTObject\DTObject.csproj">
       <Project>{0900a83b-8df4-4709-9302-ef898545516f}</Project>

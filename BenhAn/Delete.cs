@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DataController;
+using System.Data.SqlClient;
 
 namespace BenhAn
 {
@@ -15,6 +17,80 @@ namespace BenhAn
         public Delete()
         {
             InitializeComponent();
+            panel6.Enabled = false;
+        }
+
+        public Delete(ListView.SelectedListViewItemCollection items)
+        {
+            InitializeComponent();
+            if (items != null && items.Count >= 1)
+            {
+                foreach(ListViewItem j in items)
+                {
+                    listView1.Columns.Add(j.Tag.ToString());
+                }
+                foreach (ListViewItem i in items)
+                {
+                    listView1.Items.Add(i);
+                    panel6.Enabled = true;
+                }
+            }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if(listView1.Items.Count == 0)
+            {
+                panel6.Enabled = false;
+                return;
+            }
+            else
+            {
+                panel6.Enabled = true;
+                return;
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if(listView1.Items.Count == 0)
+            {
+                return;
+            }
+            if (MessageBox.Show("Bạn có muốn xóa " + listView1.Items.Count + " records hay không?", "Xác nhận", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+                SqlCommand sqlc = new SqlCommand();
+                try
+                {
+                    if (Connection.sqlcon.State != ConnectionState.Open)
+                    {
+                        Connection.sqlcon.Open();
+                    }
+                    foreach (ListViewItem item in listView1.Items)
+                    {
+                        try
+                        {
+                            sqlc.CommandText = "DELETE FROM QuanLyPhongKham.dbo.ThongTinDonThuoc WHERE MaBA = '" + item.SubItems[0].ToString() + "'";
+                            sqlc.CommandType = CommandType.Text;
+                            sqlc.Connection = Connection.sqlcon;
+                            sqlc.ExecuteNonQuery();
+                            sqlc.CommandText = "DELETE FROM QuanLyPhongKham.dbo.ThongTinDonThuoc WHERE MaBA = '" + item.SubItems[0].ToString() + "'";
+                            sqlc.CommandType = CommandType.Text;
+                            sqlc.Connection = Connection.sqlcon;
+                            sqlc.ExecuteNonQuery();
+                        }
+                        catch(Exception ex)
+                        {
+                            MessageBox.Show(ex.Message, "Lỗi");
+                        }
+                    }
+                    MessageBox.Show("Cập nhật thành công", "Thành công");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Lỗi");
+                }
+            }
         }
     }
 }

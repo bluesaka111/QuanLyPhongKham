@@ -82,11 +82,8 @@
             this.panel22 = new System.Windows.Forms.Panel();
             this.txt_NguoiLapBA = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.panel14 = new System.Windows.Forms.Panel();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.label11 = new System.Windows.Forms.Label();
             this.panel11 = new System.Windows.Forms.Panel();
-            this.txt_NgayLapBA = new System.Windows.Forms.TextBox();
+            this.dtp_NgayLapBA = new System.Windows.Forms.DateTimePicker();
             this.label10 = new System.Windows.Forms.Label();
             this.panel16 = new System.Windows.Forms.Panel();
             this.txt_MaBA = new System.Windows.Forms.TextBox();
@@ -119,7 +116,6 @@
             this.panel23.SuspendLayout();
             this.expandablePanel2.SuspendLayout();
             this.panel22.SuspendLayout();
-            this.panel14.SuspendLayout();
             this.panel11.SuspendLayout();
             this.panel16.SuspendLayout();
             this.panel17.SuspendLayout();
@@ -290,6 +286,8 @@
             this.listView1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(77)))), ((int)(((byte)(77)))));
             this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listView1.ForeColor = System.Drawing.Color.White;
+            this.listView1.FullRowSelect = true;
             this.listView1.Location = new System.Drawing.Point(0, 60);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(699, 322);
@@ -652,7 +650,7 @@
             this.expandablePanel5.Controls.Add(this.panel10);
             this.expandablePanel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.expandablePanel5.HideControlsWhenCollapsed = true;
-            this.expandablePanel5.Location = new System.Drawing.Point(0, 369);
+            this.expandablePanel5.Location = new System.Drawing.Point(0, 337);
             this.expandablePanel5.MarkupUsesStyleAlignment = true;
             this.expandablePanel5.MaximumSize = new System.Drawing.Size(0, 259);
             this.expandablePanel5.Name = "expandablePanel5";
@@ -738,6 +736,7 @@
             this.bt_delete_NV.TabIndex = 0;
             this.bt_delete_NV.Text = "Xóa hồ sơ";
             this.bt_delete_NV.UseVisualStyleBackColor = false;
+            this.bt_delete_NV.Click += new System.EventHandler(this.bt_delete_NV_Click);
             // 
             // panel25
             // 
@@ -760,6 +759,7 @@
             this.bt_update_NV.TabIndex = 0;
             this.bt_update_NV.Text = "Cập nhật hồ sơ";
             this.bt_update_NV.UseVisualStyleBackColor = false;
+            this.bt_update_NV.Click += new System.EventHandler(this.bt_update_NV_Click);
             // 
             // panel23
             // 
@@ -782,11 +782,12 @@
             this.bt_add_NV.TabIndex = 0;
             this.bt_add_NV.Text = "Thêm bệnh nhân";
             this.bt_add_NV.UseVisualStyleBackColor = false;
+            this.bt_add_NV.Click += new System.EventHandler(this.bt_add_NV_Click);
             // 
             // panel21
             // 
             this.panel21.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel21.Location = new System.Drawing.Point(0, 364);
+            this.panel21.Location = new System.Drawing.Point(0, 332);
             this.panel21.Name = "panel21";
             this.panel21.Size = new System.Drawing.Size(210, 5);
             this.panel21.TabIndex = 20;
@@ -796,7 +797,6 @@
             this.expandablePanel2.CanvasColor = System.Drawing.SystemColors.Control;
             this.expandablePanel2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.expandablePanel2.Controls.Add(this.panel22);
-            this.expandablePanel2.Controls.Add(this.panel14);
             this.expandablePanel2.Controls.Add(this.panel11);
             this.expandablePanel2.Controls.Add(this.panel16);
             this.expandablePanel2.Dock = System.Windows.Forms.DockStyle.Top;
@@ -804,9 +804,9 @@
             this.expandablePanel2.HideControlsWhenCollapsed = true;
             this.expandablePanel2.Location = new System.Drawing.Point(0, 215);
             this.expandablePanel2.MarkupUsesStyleAlignment = true;
-            this.expandablePanel2.MaximumSize = new System.Drawing.Size(0, 149);
+            this.expandablePanel2.MaximumSize = new System.Drawing.Size(0, 117);
             this.expandablePanel2.Name = "expandablePanel2";
-            this.expandablePanel2.Size = new System.Drawing.Size(210, 149);
+            this.expandablePanel2.Size = new System.Drawing.Size(210, 117);
             this.expandablePanel2.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(77)))), ((int)(((byte)(77)))));
             this.expandablePanel2.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
             this.expandablePanel2.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder;
@@ -835,7 +835,7 @@
             this.panel22.Controls.Add(this.label12);
             this.panel22.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel22.ForeColor = System.Drawing.Color.White;
-            this.panel22.Location = new System.Drawing.Point(0, 118);
+            this.panel22.Location = new System.Drawing.Point(0, 86);
             this.panel22.Name = "panel22";
             this.panel22.Padding = new System.Windows.Forms.Padding(5);
             this.panel22.Size = new System.Drawing.Size(210, 30);
@@ -849,7 +849,7 @@
             this.txt_NguoiLapBA.Name = "txt_NguoiLapBA";
             this.txt_NguoiLapBA.Size = new System.Drawing.Size(105, 20);
             this.txt_NguoiLapBA.TabIndex = 1;
-            this.txt_NguoiLapBA.Tag = "NOT NULL";
+            this.txt_NguoiLapBA.Tag = "IGNORE";
             // 
             // label12
             // 
@@ -862,46 +862,11 @@
             this.label12.Text = "Người lập";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // panel14
-            // 
-            this.panel14.BackColor = System.Drawing.Color.Transparent;
-            this.panel14.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel14.Controls.Add(this.comboBox2);
-            this.panel14.Controls.Add(this.label11);
-            this.panel14.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel14.ForeColor = System.Drawing.Color.White;
-            this.panel14.Location = new System.Drawing.Point(0, 86);
-            this.panel14.Name = "panel14";
-            this.panel14.Padding = new System.Windows.Forms.Padding(5, 5, 5, 6);
-            this.panel14.Size = new System.Drawing.Size(210, 32);
-            this.panel14.TabIndex = 9;
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(98, 5);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(105, 21);
-            this.comboBox2.TabIndex = 1;
-            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
-            // 
-            // label11
-            // 
-            this.label11.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label11.Location = new System.Drawing.Point(5, 5);
-            this.label11.Name = "label11";
-            this.label11.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label11.Size = new System.Drawing.Size(93, 19);
-            this.label11.TabIndex = 0;
-            this.label11.Text = "Đơn thuốc";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // panel11
             // 
             this.panel11.BackColor = System.Drawing.Color.Transparent;
             this.panel11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel11.Controls.Add(this.txt_NgayLapBA);
+            this.panel11.Controls.Add(this.dtp_NgayLapBA);
             this.panel11.Controls.Add(this.label10);
             this.panel11.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel11.ForeColor = System.Drawing.Color.White;
@@ -911,15 +876,15 @@
             this.panel11.Size = new System.Drawing.Size(210, 30);
             this.panel11.TabIndex = 8;
             // 
-            // txt_NgayLapBA
+            // dtp_NgayLapBA
             // 
-            this.txt_NgayLapBA.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txt_NgayLapBA.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txt_NgayLapBA.Location = new System.Drawing.Point(98, 5);
-            this.txt_NgayLapBA.Name = "txt_NgayLapBA";
-            this.txt_NgayLapBA.Size = new System.Drawing.Size(105, 20);
-            this.txt_NgayLapBA.TabIndex = 1;
-            this.txt_NgayLapBA.Tag = "NOT NULL";
+            this.dtp_NgayLapBA.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dtp_NgayLapBA.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtp_NgayLapBA.Location = new System.Drawing.Point(98, 5);
+            this.dtp_NgayLapBA.Name = "dtp_NgayLapBA";
+            this.dtp_NgayLapBA.Size = new System.Drawing.Size(105, 20);
+            this.dtp_NgayLapBA.TabIndex = 1;
+            this.dtp_NgayLapBA.Tag = "IGNORE";
             // 
             // label10
             // 
@@ -954,7 +919,7 @@
             this.txt_MaBA.Name = "txt_MaBA";
             this.txt_MaBA.Size = new System.Drawing.Size(105, 20);
             this.txt_MaBA.TabIndex = 1;
-            this.txt_MaBA.Tag = "NOT NULL READ ONLY";
+            this.txt_MaBA.Tag = "IGNORE";
             // 
             // label8
             // 
@@ -998,7 +963,6 @@
             // 
             // timer1
             // 
-            this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // PForm
@@ -1016,6 +980,7 @@
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PForm_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.PForm_FormClosed);
+            this.Load += new System.EventHandler(this.PForm_Load);
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel12.ResumeLayout(false);
@@ -1046,9 +1011,7 @@
             this.expandablePanel2.ResumeLayout(false);
             this.panel22.ResumeLayout(false);
             this.panel22.PerformLayout();
-            this.panel14.ResumeLayout(false);
             this.panel11.ResumeLayout(false);
-            this.panel11.PerformLayout();
             this.panel16.ResumeLayout(false);
             this.panel16.PerformLayout();
             this.panel17.ResumeLayout(false);
@@ -1094,11 +1057,7 @@
         private System.Windows.Forms.TextBox txt_maBN;
         private System.Windows.Forms.Label label7;
         private DevComponents.DotNetBar.ExpandablePanel expandablePanel2;
-        private System.Windows.Forms.Panel panel14;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Panel panel11;
-        private System.Windows.Forms.TextBox txt_NgayLapBA;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Panel panel16;
         private System.Windows.Forms.TextBox txt_MaBA;
@@ -1114,8 +1073,6 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Panel panel19;
         private System.Windows.Forms.Button bt_reset_fields;
-        private System.Windows.Forms.Panel panel29;
-        private System.Windows.Forms.Button bt_delete_NV;
         private System.Windows.Forms.Panel panel25;
         private System.Windows.Forms.Button bt_update_NV;
         private System.Windows.Forms.Panel panel23;
@@ -1125,6 +1082,9 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Panel panel27;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DateTimePicker dtp_NgayLapBA;
+        private System.Windows.Forms.Panel panel29;
+        private System.Windows.Forms.Button bt_delete_NV;
     }
 }
 

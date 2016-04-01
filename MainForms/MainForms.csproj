@@ -137,6 +137,10 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\About\About.csproj">
+      <Project>{97d31c60-a040-494c-8a6e-8ef4d37cb047}</Project>
+      <Name>About</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ClassLibrary1\ApplicationSetting.csproj">
       <Project>{42f2542e-abef-4876-aefd-327f008b0573}</Project>
       <Name>ApplicationSetting</Name>

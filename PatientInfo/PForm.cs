@@ -24,6 +24,7 @@ namespace PatientInfo
             userIntended = true;
             intentType = 0;
             patID = "NULL";
+            return;
         }
 
         public PForm(string patientID, bool userintend, int type)
@@ -38,21 +39,26 @@ namespace PatientInfo
 
         private void ResetField(string patientID)
         {
+            if (patID == "NULL")
+            {
+                return;
+            }
             txt_maBN.Text = (patID == "NULL" ? String.Empty : patID);
+            
             if(Connection.sqlcon.State != ConnectionState.Closed)
             {
                 Connection.sqlcon.Close();
             }
             SqlCommand sqlc = new SqlCommand();
             sqlc.Connection = Connection.sqlcon;
-            sqlc.CommandText = "QuanLyPhongKham.dbo.usp_GetFullPatientInfo";
-            sqlc.CommandType = CommandType.StoredProcedure;
+            sqlc.CommandText = "SELECT * FROM QuanLyPhongKham.dbo.BenhNhan WHERE MaBN = @patientID";
+            sqlc.CommandType = CommandType.Text;
             if (!sqlc.Parameters.Contains("@patientID"))
             {
                 sqlc.Parameters.Add("@patientID", SqlDbType.NChar);
-                sqlc.Parameters["@patientID"].Value = patientID;
-                sqlc.Parameters["@patientID"].Size = 10;
             }
+            sqlc.Parameters["@patientID"].Value = patientID.Trim();
+            sqlc.Parameters["@patientID"].Size = 10;
             try
             {
                 Connection.sqlcon.Open();
@@ -67,37 +73,91 @@ namespace PatientInfo
                 if(reader.HasRows)
                 {
                     reader.Read();
-                    txt_maBN.Text = (reader[0] == DBNull.Value ? "NULL" : reader[0].ToString());
-                    txt_HoBN.Text = (reader[1] == DBNull.Value ? "NULL" : reader[1].ToString());
-                    txt_TenBN.Text = (reader[2] == DBNull.Value ? "NULL" : reader[2].ToString());
-                    cb_GTBN.SelectedIndex = (reader[3].ToString() == "False" ? 0 : 1);
-                    txt_DThoai.Text = (reader[4] == DBNull.Value ? "NULL" : reader[4].ToString());
-                    txt_DiaChi.Text = (reader[5] == DBNull.Value ? "NULL" : reader[5].ToString());
-                    txt_MaBA.Text = (reader[6] == DBNull.Value ? "NULL" : reader[6].ToString());
-                    txt_NgayLapBA.Text = (reader[7] == DBNull.Value ? "NULL" : reader[7].ToString());
-                    txt_NguoiLapBA.Text = (reader[8] == DBNull.Value ? "NULL" : reader[8].ToString());
+                    txt_maBN.Text = (reader["MaBN"] == DBNull.Value ? "NULL" : reader["MaBN"].ToString());
+                    txt_HoBN.Text = (reader["HoBN"] == DBNull.Value ? "NULL" : reader["HoBN"].ToString());
+                    txt_TenBN.Text = (reader["TenBN"] == DBNull.Value ? "NULL" : reader["TenBN"].ToString());
+                    cb_GTBN.SelectedIndex = (reader["GioiTinh"].ToString() == "False" ? 0 : 1);
+                    txt_DThoai.Text = (reader["SoDienThoai"] == DBNull.Value ? "NULL" : reader["SoDienThoai"].ToString());
+                    txt_DiaChi.Text = (reader["DiaChi"] == DBNull.Value ? "NULL" : reader["DiaChi"].ToString());
                     reader.Close();
                 }
-                
-                sqlc.CommandText = "SELECT MaTTDT FROM QuanLyPhongKham.dbo.ThongTinDonThuoc";
+
+                sqlc.Parameters.Clear();
+
+                sqlc.CommandText = "SELECT * FROM QuanLyPhongKham.dbo.BenhAn WHERE MaBN = @patientID";
                 sqlc.CommandType = CommandType.Text;
+                if (!sqlc.Parameters.Contains("@patientID"))
+                {
+                    sqlc.Parameters.Add("@patientID", SqlDbType.NChar);
+                }
+                sqlc.Parameters["@patientID"].Value = patientID.Trim();
+                sqlc.Parameters["@patientID"].Size = 10;
                 reader = sqlc.ExecuteReader();
-                if(reader.HasRows)
+                if(!reader.HasRows)
+                {
+                    reader.Close();
+                    return;
+                }
+                if (reader.HasRows)
+                {
+                    reader.Read();
+                    txt_MaBA.Text = (reader["MaBA"] == DBNull.Value ? "NULL" : reader["MaBA"].ToString());
+                    dtp_NgayLapBA.Value = (reader["NgayLapBAn"] == DBNull.Value ? DateTime.Now : Convert.ToDateTime(reader["NgayLapBAn"].ToString()));
+                    txt_NguoiLapBA.Text = (reader["MaNV"] == DBNull.Value ? "NULL" : reader["MaNV"].ToString());
+                    reader.Close();
+                }
+
+                sqlc.Parameters.Clear();
+
+                sqlc.CommandText = "SELECT * FROM QuanLyPhongKham.dbo.ThongTinDonThuoc WHERE MaBA = @MaBA";
+                sqlc.CommandType = CommandType.Text;
+                if (!sqlc.Parameters.Contains("@MaBA"))
+                {
+                    sqlc.Parameters.Add("@MaBA", SqlDbType.NChar);
+                }
+                sqlc.Parameters["@MaBA"].Value = txt_MaBA.Text;
+                sqlc.Parameters["@MaBA"].Size = 10;
+                reader = sqlc.ExecuteReader();
+                if (!reader.HasRows)
+                {
+                    reader.Close();
+                    return;
+
+                }
+                if (reader.HasRows)
                 {
                     while(reader.Read())
                     {
-                        comboBox2.Items.Add(reader[0].ToString().Trim());
+                        ListViewGroup g = new ListViewGroup();
+                        g.Header = reader["MaDonThuoc"].ToString();
+                        if(!listView1.Groups.Contains(g))
+                        {
+                            listView1.Groups.Add(g);
+                        }
+                        ListViewItem item = new ListViewItem();
+                        item.Text = reader["MaTTDT"].ToString();
+                        for(int i = 2; i < reader.FieldCount; i++)
+                        {
+                            ListViewItem.ListViewSubItem sub = new ListViewItem.ListViewSubItem();
+                            sub.Text = reader[i].ToString();
+                            item.SubItems.Add(sub);
+                        }
+                        if(listView1.Groups.Count >= 1)
+                        {
+                            listView1.Groups[listView1.Groups.Count - 1].Items.Add(item);
+                        }
+                        listView1.Items.Add(item);
                     }
                     reader.Close();
                 }
-                else
-                {
-                    reader.Close();
-                }
+
+                sqlc.Parameters.Clear();
+
+                pictureBox2.Load(@"http://localhost/patientPTS/" + patientID.ToString());
             }
             catch(Exception ex)
             {
-                MessageBox.Show("Lỗi khi truy cập dữ liệu của bệnh nhân " + patientID + ": \n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lỗi khi truy cập dữ liệu của bệnh nhân " + patientID + ": \n" + ex.Message + " bởi " + ex.Source, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Connection.sqlcon.Close();
             }
         }
@@ -237,11 +297,22 @@ namespace PatientInfo
                         {
                             continue;
                         }
-                        if (es.Tag.ToString() != "NOT NULL READ ONLY")
+                        if (es.Tag.ToString().Contains("IGNORE") && intentType == 2)
+                        {
+                            continue;
+                        }
+                        if (es.Tag.ToString() == "NOT NULL READ ONLY" || es.Tag.ToString() == "NOT NULL")
                         {
                             if (intentType != 1)
                             {
-                                (es as TextBox).ReadOnly = userIntended;
+                                if ((es as TextBox).Text == "NULL")
+                                {
+                                    (es as TextBox).ReadOnly = false;
+                                }
+                                else
+                                {
+                                    (es as TextBox).ReadOnly = userIntended;
+                                }
                             }
                             else
                             {
@@ -259,17 +330,35 @@ namespace PatientInfo
                                 (es as TextBox).ReadOnly = false;
                             }
                         }
-                        if (es.Tag.ToString() == "NOT NULL")
+                        if (es.Tag.ToString() == "NOT NULL" || es.Tag.ToString() == "NOT NULL READ ONLY")
                         {
                             if (es.Text == "" || es.Text == String.Empty || es.Text == "NULL")
                             {
                                 c.BackColor = Color.Maroon;
                                 c.ForeColor = Color.Yellow;
+                                bt_update_NV.Enabled = false;
+                                if (intentType == 1)
+                                {
+                                    bt_add_NV.Enabled = true;
+                                }
+                                else
+                                {
+                                    bt_add_NV.Enabled = false;
+                                }
                             }
                             else
                             {
                                 c.BackColor = Color.FromArgb(13, 77, 77);
                                 c.ForeColor = Color.White;
+                                bt_update_NV.Enabled = true;
+                                if (intentType == 1)
+                                {
+                                    bt_add_NV.Enabled = true;
+                                }
+                                else
+                                {
+                                    bt_add_NV.Enabled = false;
+                                }
                             }
                         }
                         else
@@ -294,11 +383,22 @@ namespace PatientInfo
                         {
                             continue;
                         }
-                        if (es.Tag.ToString() != "NOT NULL READ ONLY")
+                        if (es.Tag.ToString().Contains("IGNORE") && intentType == 2)
+                        {
+                            continue;
+                        }
+                        if (es.Tag.ToString() == "NOT NULL READ ONLY" || es.Tag.ToString() == "NOT NULL")
                         {
                             if (intentType != 1)
                             {
-                                (es as TextBox).ReadOnly = userIntended;
+                                if ((es as TextBox).Text == "NULL")
+                                {
+                                    (es as TextBox).ReadOnly = false;
+                                }
+                                else
+                                {
+                                    (es as TextBox).ReadOnly = userIntended;
+                                }
                             }
                             else
                             {
@@ -316,17 +416,35 @@ namespace PatientInfo
                                 (es as TextBox).ReadOnly = false;
                             }
                         }
-                        if (es.Tag.ToString() == "NOT NULL")
+                        if (es.Tag.ToString() == "NOT NULL" || es.Tag.ToString() == "NOT NULL READ ONLY")
                         {
                             if (es.Text == "" || es.Text == String.Empty || es.Text == "NULL")
                             {
                                 c.BackColor = Color.Maroon;
                                 c.ForeColor = Color.Yellow;
+                                bt_add_NV.Enabled = false;
+                                if (intentType == 1)
+                                {
+                                    bt_add_NV.Enabled = true;
+                                }
+                                else
+                                {
+                                    bt_add_NV.Enabled = false;
+                                }
                             }
                             else
                             {
                                 c.BackColor = Color.FromArgb(13, 77, 77);
                                 c.ForeColor = Color.White;
+                                bt_update_NV.Enabled = true;
+                                if (intentType == 1)
+                                {
+                                    bt_add_NV.Enabled = true;
+                                }
+                                else
+                                {
+                                    bt_add_NV.Enabled = false;
+                                }
                             }
                         }
                         else
@@ -356,9 +474,277 @@ namespace PatientInfo
             expandablePanel3.AutoScroll = expandablePanel3.Expanded;
         }
 
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        private void PForm_Load(object sender, EventArgs e)
         {
+            timer1.Start();
+        }
 
+        private void bt_add_NV_Click(object sender, EventArgs e)
+        {
+            if(txt_maBN.Text == "" || txt_maBN.Text == String.Empty || txt_maBN.Text == null)
+            {
+                MessageBox.Show("Vui lòng điền vào mã Bệnh Nhân trước khi tiếp tục");
+                return;
+            }
+            if (txt_MaBA.Text == "" || txt_MaBA.Text == String.Empty || txt_MaBA.Text == null)
+            {
+                MessageBox.Show("Vui lòng điền vào mã Bệnh Án trước khi tiếp tục");
+                return;
+            }
+            try
+            {
+                if (Connection.sqlcon.State != ConnectionState.Open)
+                {
+                    Connection.sqlcon.Open();
+                }
+                SqlCommand sqlc = new SqlCommand();
+                sqlc.Connection = Connection.sqlcon;
+                sqlc.CommandText = "INSERT INTO QuanLyPhongKham.dbo.BenhNhan VALUES ( @MaBN, @HoBN, @TenBN, @GioiTinh, @DienThoai, @DiaChi)";
+                sqlc.CommandType = CommandType.Text;
+                sqlc.Parameters.Clear();
+                if (!sqlc.Parameters.Contains("@MaBN")) { sqlc.Parameters.Add("@MaBN", SqlDbType.NChar); }
+                if (!sqlc.Parameters.Contains("@HoBN"))
+                {
+                    sqlc.Parameters.Add("@HoBN", SqlDbType.NVarChar);
+                }
+                if (!sqlc.Parameters.Contains("@TenBN"))
+                {
+                    sqlc.Parameters.Add("@TenBN", SqlDbType.NVarChar);
+                }
+                if (!sqlc.Parameters.Contains("@GioiTinh"))
+                {
+                    sqlc.Parameters.Add("@GioiTinh", SqlDbType.Bit);
+                }
+                if (!sqlc.Parameters.Contains("@DiaChi"))
+                {
+                    sqlc.Parameters.Add("@DiaChi", SqlDbType.NVarChar);
+                }
+                if (!sqlc.Parameters.Contains("@DienThoai"))
+                {
+                    sqlc.Parameters.Add("@DienThoai", SqlDbType.NChar);
+                }
+                sqlc.Parameters["@MaBN"].Value = txt_maBN.Text;
+                sqlc.Parameters["@MaBN"].SqlDbType = SqlDbType.NChar;
+                sqlc.Parameters["@HoBN"].Value = txt_HoBN.Text;
+                sqlc.Parameters["@HoBN"].SqlDbType = SqlDbType.NVarChar;
+                sqlc.Parameters["@TenBN"].Value = txt_TenBN.Text;
+                sqlc.Parameters["@TenBN"].SqlDbType = SqlDbType.NVarChar;
+                sqlc.Parameters["@GioiTinh"].Value = cb_GTBN.SelectedIndex;
+                sqlc.Parameters["@GioiTinh"].SqlDbType = SqlDbType.Bit;
+                sqlc.Parameters["@DiaChi"].Value = txt_DiaChi.Text;
+                sqlc.Parameters["@DiaChi"].SqlDbType = SqlDbType.NVarChar;
+                sqlc.Parameters["@DienThoai"].Value = txt_DThoai.Text;
+                sqlc.Parameters["@DienThoai"].SqlDbType = SqlDbType.NChar;
+
+                sqlc.ExecuteNonQuery();
+
+                sqlc.CommandText = "INSERT INTO QuanLyPhongKham.dbo.BenhAn VALUES ( @MaBA, @MaNV, @MaBN, @NgayLapBAn)";
+                sqlc.CommandType = CommandType.Text;
+                sqlc.Connection = Connection.sqlcon;
+                sqlc.Parameters.Clear();
+                if (!sqlc.Parameters.Contains("@MaNV"))
+                {
+                    sqlc.Parameters.Add("@MaNV", SqlDbType.NChar);
+                }
+                if (!sqlc.Parameters.Contains("@MaBA"))
+                {
+                    sqlc.Parameters.Add("@MaBA", SqlDbType.NChar);
+                }
+                if (!sqlc.Parameters.Contains("@MaBN"))
+                {
+                    sqlc.Parameters.Add("@MaBN", SqlDbType.NChar);
+                }
+                if (!sqlc.Parameters.Contains("@NgayLapBAn"))
+                {
+                    sqlc.Parameters.Add("@NgayLapBAn", SqlDbType.DateTime);
+                }
+                sqlc.Parameters["@MaBA"].Value = txt_MaBA.Text;
+                sqlc.Parameters["@MaBA"].SqlDbType = SqlDbType.NChar;
+                sqlc.Parameters["@MaNV"].Value = txt_NguoiLapBA.Text;
+                sqlc.Parameters["@MaNV"].SqlDbType = SqlDbType.NChar;
+                sqlc.Parameters["@MaBN"].Value = txt_maBN.Text;
+                sqlc.Parameters["@MaBN"].SqlDbType = SqlDbType.NChar;
+                sqlc.Parameters["@NgayLapBAn"].Value = dtp_NgayLapBA.Value;
+                sqlc.Parameters["@NgayLapBAn"].SqlDbType = SqlDbType.DateTime;
+
+                sqlc.ExecuteNonQuery();
+                MessageBox.Show("Thêm thành công");
+                this.Close();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Lỗi");
+            }
+        }
+
+        private void bt_update_NV_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txt_maBN.Text == "" || txt_maBN.Text == String.Empty || txt_maBN.Text == null)
+                {
+                    MessageBox.Show("Vui lòng điền vào mã Bệnh Nhân trước khi tiếp tục");
+                    return;
+                }
+                if (txt_MaBA.Text == "" || txt_MaBA.Text == String.Empty || txt_MaBA.Text == null)
+                {
+                    MessageBox.Show("Vui lòng điền vào mã Bệnh Án trước khi tiếp tục");
+                    return;
+                }
+                if (Connection.sqlcon.State != ConnectionState.Open)
+                {
+                    Connection.sqlcon.Open();
+                }
+                SqlCommand sqlc = new SqlCommand();
+                sqlc.Connection = Connection.sqlcon;
+                sqlc.CommandText = "UPDATE QuanLyPhongKham.dbo.BenhNhan SET "+ 
+                    " MaBN = @MaBN, HoBN = @HoBN, TenBN = @TenBN, GioiTinh = @GioiTinh, DiaChi = @DiaChi, SoDienThoai = @DienThoai WHERE MaBN = @MaBN";
+                sqlc.CommandType = CommandType.Text;
+                sqlc.Connection = Connection.sqlcon;
+                sqlc.Parameters.Clear();
+                if (!sqlc.Parameters.Contains("@MaBN")) { sqlc.Parameters.Add("@MaBN", SqlDbType.NChar); }
+                if (!sqlc.Parameters.Contains("@HoBN"))
+                {
+                    sqlc.Parameters.Add("@HoBN", SqlDbType.NVarChar);
+                }
+                if (!sqlc.Parameters.Contains("@TenBN"))
+                {
+                    sqlc.Parameters.Add("@TenBN", SqlDbType.NVarChar);
+                }
+                if (!sqlc.Parameters.Contains("@GioiTinh"))
+                {
+                    sqlc.Parameters.Add("@GioiTinh", SqlDbType.Bit);
+                }
+                if (!sqlc.Parameters.Contains("@DiaChi"))
+                {
+                    sqlc.Parameters.Add("@DiaChi", SqlDbType.NVarChar);
+                }
+                if (!sqlc.Parameters.Contains("@DienThoai"))
+                {
+                    sqlc.Parameters.Add("@DienThoai", SqlDbType.NChar);
+                }
+                sqlc.Parameters["@MaBN"].Value = txt_maBN.Text;
+                sqlc.Parameters["@MaBN"].SqlDbType = SqlDbType.NChar;
+                sqlc.Parameters["@HoBN"].Value = txt_HoBN.Text;
+                sqlc.Parameters["@HoBN"].SqlDbType = SqlDbType.NVarChar;
+                sqlc.Parameters["@TenBN"].Value = txt_TenBN.Text;
+                sqlc.Parameters["@TenBN"].SqlDbType = SqlDbType.NVarChar;
+                sqlc.Parameters["@GioiTinh"].Value = cb_GTBN.SelectedIndex;
+                sqlc.Parameters["@GioiTinh"].SqlDbType = SqlDbType.Bit;
+                sqlc.Parameters["@DiaChi"].Value = txt_DiaChi.Text;
+                sqlc.Parameters["@DiaChi"].SqlDbType = SqlDbType.NVarChar;
+                sqlc.Parameters["@DienThoai"].Value = txt_DThoai.Text;
+                sqlc.Parameters["@DienThoai"].SqlDbType = SqlDbType.NChar;
+
+                sqlc.ExecuteNonQuery();
+
+                sqlc.CommandText = "UPDATE QuanLyPhongKham.dbo.BenhAn "
+                    + "SET " +
+                    "MaBA = @MaBA, MaNV = @MaNV, MaBN = @MaBN, NgayLapBAn = @NgayLapBAn WHERE MaBN = @MaBN";
+                sqlc.CommandType = CommandType.Text;
+                sqlc.Connection = Connection.sqlcon;
+                sqlc.Parameters.Clear();
+                if (!sqlc.Parameters.Contains("@MaNV"))
+                {
+                    sqlc.Parameters.Add("@MaNV", SqlDbType.NChar);
+                }
+                if (!sqlc.Parameters.Contains("@MaBA"))
+                {
+                    sqlc.Parameters.Add("@MaBA", SqlDbType.NChar);
+                }
+                if (!sqlc.Parameters.Contains("@MaBN"))
+                {
+                    sqlc.Parameters.Add("@MaBN", SqlDbType.NChar);
+                }
+                if (!sqlc.Parameters.Contains("@NgayLapBAn"))
+                {
+                    sqlc.Parameters.Add("@NgayLapBAn", SqlDbType.DateTime);
+                }
+                sqlc.Parameters["@MaBA"].Value = txt_MaBA.Text;
+                sqlc.Parameters["@MaBA"].SqlDbType = SqlDbType.NChar;
+                sqlc.Parameters["@MaNV"].Value = txt_NguoiLapBA.Text;
+                sqlc.Parameters["@MaNV"].SqlDbType = SqlDbType.NChar;
+                sqlc.Parameters["@MaBN"].Value = txt_maBN.Text;
+                sqlc.Parameters["@MaBN"].SqlDbType = SqlDbType.NChar;
+                sqlc.Parameters["@NgayLapBAn"].Value = dtp_NgayLapBA.Value;
+                sqlc.Parameters["@NgayLapBAn"].SqlDbType = SqlDbType.DateTime;
+
+                sqlc.ExecuteNonQuery();
+                MessageBox.Show("Cập nhật thành công");
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Lỗi");
+            }
+        }
+
+        private void bt_delete_NV_Click(object sender, EventArgs e)
+        {
+            if (txt_maBN.Text == "" || txt_maBN.Text == String.Empty || txt_maBN.Text == null)
+            {
+                MessageBox.Show("Vui lòng điền vào mã Bệnh Nhân trước khi tiếp tục");
+                return;
+            }
+            if (txt_MaBA.Text == "" || txt_MaBA.Text == String.Empty || txt_MaBA.Text == null)
+            {
+                MessageBox.Show("Vui lòng điền vào mã Bệnh Án trước khi tiếp tục");
+                return;
+            }
+            try
+            {
+                if (Connection.sqlcon.State != ConnectionState.Open)
+                {
+                    Connection.sqlcon.Open();
+                }
+                SqlCommand sqlc = new SqlCommand();
+                sqlc.Connection = Connection.sqlcon;
+
+                sqlc.CommandText = "DELETE FROM QuanLyPhongKham.dbo.ThongTinDonThuoc WHERE MaBN = @MaBN";
+                sqlc.CommandType = CommandType.Text;
+                sqlc.Connection = Connection.sqlcon;
+                sqlc.Parameters.Clear();
+                if (!sqlc.Parameters.Contains("@MaBN"))
+                {
+                    sqlc.Parameters.Add("@MaBN", SqlDbType.NChar);
+                }
+                sqlc.Parameters["@MaBN"].Value = txt_maBN.Text;
+                sqlc.Parameters["@MaBN"].SqlDbType = SqlDbType.NChar;
+
+                sqlc.ExecuteNonQuery();
+
+                sqlc.CommandText = "DELETE FROM QuanLyPhongKham.dbo.BenhAn WHERE MaBN = @MaBN";
+                sqlc.CommandType = CommandType.Text;
+                sqlc.Connection = Connection.sqlcon;
+                sqlc.Parameters.Clear();
+                if (!sqlc.Parameters.Contains("@MaBN"))
+                {
+                    sqlc.Parameters.Add("@MaBN", SqlDbType.NChar);
+                }
+                sqlc.Parameters["@MaBN"].Value = txt_maBN.Text;
+                sqlc.Parameters["@MaBN"].SqlDbType = SqlDbType.NChar;
+
+                sqlc.ExecuteNonQuery();
+
+                sqlc.CommandText = "DELETE FROM QuanLyPhongKham.dbo.BenhNhan WHERE MaBN = @MaBN";
+                sqlc.CommandType = CommandType.Text;
+                sqlc.Connection = Connection.sqlcon;
+                sqlc.Parameters.Clear();
+                if (!sqlc.Parameters.Contains("@MaBN"))
+                {
+                    sqlc.Parameters.Add("@MaBN", SqlDbType.NChar);
+                }
+                sqlc.Parameters["@MaBN"].Value = txt_maBN.Text;
+                sqlc.Parameters["@MaBN"].SqlDbType = SqlDbType.NChar;
+
+                sqlc.ExecuteNonQuery();
+                MessageBox.Show("Xóa thành công");
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Lỗi");
+            }
         }
     }
 }

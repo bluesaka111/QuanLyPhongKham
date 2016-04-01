@@ -42,14 +42,26 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ActionForm.exe" size="25600">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="About.exe" size="653312">
+      <assemblyIdentity name="About" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>CCue+Ng97DYEReSrZvfb6uiDmTKLoJpT8dpX9EWhWSU=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ActionForm.exe" size="30208">
       <assemblyIdentity name="ActionForm" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>4nh5Fq0CDOhoMaP53W2pykZHD1nXx6Om7H8L5ycv62U=</dsig:DigestValue>
+        <dsig:DigestValue>RpRXqug41Psn1HCCxf+4SBPsvOCgs8RbtLrgchJtFgk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -61,19 +73,19 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>fOxltctdTbB9Z0hh/O8mjK6jls3qhzvocM85VOUzpCI=</dsig:DigestValue>
+        <dsig:DigestValue>AC8qMobH+ikBvGzIQ4lTSLj2s2ExNpvjeTMO3qysBBk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BenhAn.exe" size="16896">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BenhAn.exe" size="21504">
       <assemblyIdentity name="BenhAn" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>73i55XQrz1B9SwXCJO9kT+/Oay+aTATA6cus1qPVbaQ=</dsig:DigestValue>
+        <dsig:DigestValue>xKKPxVPVortuL2xHlSK5iflbmLtcNNzQeN47w4UC1dk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -85,7 +97,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>hk+sRx63Q0ParazhuJpynDLOAn4MYTmLFHFcm2hbd0k=</dsig:DigestValue>
+        <dsig:DigestValue>nn5cx+g5MlUKWGzkom516Y6rb5rS8zlHvpq6+Y4KCO8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -102,14 +114,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Dialog.exe" size="13824">
-      <assemblyIdentity name="Dialog" version="1.0.5931.37204" language="neutral" processorArchitecture="x86" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DonThuoc.exe" size="25088">
+      <assemblyIdentity name="DonThuoc" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>8AMis3C+MZro82cdSpmY/kfEhUAr+WR3I9XxaQUADkg=</dsig:DigestValue>
+        <dsig:DigestValue>RNT3ZT/Hi4mAq/WnLCLkeZq/aMvSQ461FYXOKbIhQRU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -121,43 +133,43 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>TlwQYj1U0sTzr0WwG9Ymjc6Q20FCZ7WSH7AJJkqHNx8=</dsig:DigestValue>
+        <dsig:DigestValue>ObYTJu471rZlwJk7/Rb0hZKGMZsX0gjsbKYFZ3ODekI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="EmployeeInfo.exe" size="39936">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="EmployeeInfo.exe" size="47616">
       <assemblyIdentity name="EmployeeInfo" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>NUs8WPUR86Vt0MWilV5TvfX+IIHa7dUy0XBDUTvp+io=</dsig:DigestValue>
+        <dsig:DigestValue>VrfzGewtSy5Hm8z4JlHilxIwtqZuv6oPtXCLg5Uu1TQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MainForms.exe" size="219096">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MainForms.exe" size="220120">
       <assemblyIdentity name="MainForms" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>JlKBkQxJxOTQZjYnaj9k/KlW1mxTTdUfwLePDp6qmUI=</dsig:DigestValue>
+        <dsig:DigestValue>lnEMffvl1QJPmeKV44l6YjO7ZKrXEktyr6r4ONgwnO0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PatientInfo.exe" size="36352">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PatientInfo.exe" size="44032">
       <assemblyIdentity name="PatientInfo" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>scr7vA4lUsp7SFPR0LE0c3SusJ0KPOdhR/fCJMt6j3c=</dsig:DigestValue>
+        <dsig:DigestValue>+Y8D8lhgthAp+t7NMMNru+rbdLxzaVVqpwEZFbxI6EQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

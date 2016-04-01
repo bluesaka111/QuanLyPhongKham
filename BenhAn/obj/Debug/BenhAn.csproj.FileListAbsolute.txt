@@ -3,11 +3,9 @@ E:\22032016\Visual Studio 2015\Projects\ClinicManagement\BenhAn\bin\Debug\BenhAn
 E:\22032016\Visual Studio 2015\Projects\ClinicManagement\BenhAn\bin\Debug\BenhAn.pdb
 E:\22032016\Visual Studio 2015\Projects\ClinicManagement\BenhAn\bin\Debug\ASettings.dll
 E:\22032016\Visual Studio 2015\Projects\ClinicManagement\BenhAn\bin\Debug\DataController.dll
-E:\22032016\Visual Studio 2015\Projects\ClinicManagement\BenhAn\bin\Debug\Dialog.exe
 E:\22032016\Visual Studio 2015\Projects\ClinicManagement\BenhAn\bin\Debug\DTObject.dll
 E:\22032016\Visual Studio 2015\Projects\ClinicManagement\BenhAn\bin\Debug\ASettings.pdb
 E:\22032016\Visual Studio 2015\Projects\ClinicManagement\BenhAn\bin\Debug\DataController.pdb
-E:\22032016\Visual Studio 2015\Projects\ClinicManagement\BenhAn\bin\Debug\Dialog.pdb
 E:\22032016\Visual Studio 2015\Projects\ClinicManagement\BenhAn\bin\Debug\DTObject.pdb
 E:\22032016\Visual Studio 2015\Projects\ClinicManagement\BenhAn\obj\Debug\BenhAn.csprojResolveAssemblyReference.cache
 E:\22032016\Visual Studio 2015\Projects\ClinicManagement\BenhAn\obj\Debug\BenhAn.AddEdit.resources
@@ -16,3 +14,13 @@ E:\22032016\Visual Studio 2015\Projects\ClinicManagement\BenhAn\obj\Debug\BenhAn
 E:\22032016\Visual Studio 2015\Projects\ClinicManagement\BenhAn\obj\Debug\BenhAn.csproj.GenerateResource.Cache
 E:\22032016\Visual Studio 2015\Projects\ClinicManagement\BenhAn\obj\Debug\BenhAn.exe
 E:\22032016\Visual Studio 2015\Projects\ClinicManagement\BenhAn\obj\Debug\BenhAn.pdb
+E:\22032016\Visual Studio 2015\Projects\ClinicManagement\BenhAn\bin\Debug\Microsoft.CSharp.dll
+E:\22032016\Visual Studio 2015\Projects\ClinicManagement\BenhAn\bin\Debug\System.Data.DataSetExtensions.dll
+E:\22032016\Visual Studio 2015\Projects\ClinicManagement\BenhAn\bin\Debug\System.Data.dll
+E:\22032016\Visual Studio 2015\Projects\ClinicManagement\BenhAn\bin\Debug\System.Deployment.dll
+E:\22032016\Visual Studio 2015\Projects\ClinicManagement\BenhAn\bin\Debug\System.dll
+E:\22032016\Visual Studio 2015\Projects\ClinicManagement\BenhAn\bin\Debug\System.Drawing.dll
+E:\22032016\Visual Studio 2015\Projects\ClinicManagement\BenhAn\bin\Debug\System.Net.Http.dll
+E:\22032016\Visual Studio 2015\Projects\ClinicManagement\BenhAn\bin\Debug\System.Windows.Forms.dll
+E:\22032016\Visual Studio 2015\Projects\ClinicManagement\BenhAn\bin\Debug\System.Xml.dll
+E:\22032016\Visual Studio 2015\Projects\ClinicManagement\BenhAn\bin\Debug\System.Xml.Linq.dll

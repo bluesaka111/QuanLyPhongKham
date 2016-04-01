@@ -15,7 +15,6 @@ namespace DTObject
         private string employeeRank;
         public UserInfo()
         {
-            employeeIDcode = null;
             username = String.Empty;
             password = String.Empty;
             employeeIDcode = String.Empty;
